@@ -1,0 +1,242 @@
+@import 'tailwindcss';
+
+@plugin 'tailwindcss-animate';
+
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+
+@custom-variant dark (&:is(.dark *));
+
+@theme {
+    --font-sans:
+        'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+
+    --radius-lg: var(--radius);
+    --radius-md: calc(var(--radius) - 2px);
+    --radius-sm: calc(var(--radius) - 4px);
+
+    --color-background: var(--background);
+    --color-foreground: var(--foreground);
+
+    --color-card: var(--card);
+    --color-card-foreground: var(--card-foreground);
+
+    --color-popover: var(--popover);
+    --color-popover-foreground: var(--popover-foreground);
+
+    --color-primary: var(--primary);
+    --color-primary-foreground: var(--primary-foreground);
+
+    --color-secondary: var(--secondary);
+    --color-secondary-foreground: var(--secondary-foreground);
+
+    --color-muted: var(--muted);
+    --color-muted-foreground: var(--muted-foreground);
+
+    --color-accent: var(--accent);
+    --color-accent-foreground: var(--accent-foreground);
+
+    --color-destructive: var(--destructive);
+    --color-destructive-foreground: var(--destructive-foreground);
+
+    --color-border: var(--border);
+    --color-input: var(--input);
+    --color-ring: var(--ring);
+
+    --color-chart-1: var(--chart-1);
+    --color-chart-2: var(--chart-2);
+    --color-chart-3: var(--chart-3);
+    --color-chart-4: var(--chart-4);
+    --color-chart-5: var(--chart-5);
+
+    --color-sidebar: var(--sidebar-background);
+    --color-sidebar-foreground: var(--sidebar-foreground);
+    --color-sidebar-primary: var(--sidebar-primary);
+    --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+    --color-sidebar-accent: var(--sidebar-accent);
+    --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+    --color-sidebar-border: var(--sidebar-border);
+    --color-sidebar-ring: var(--sidebar-ring);
+}
+
+/*
+  The default border color has changed to `currentColor` in Tailwind CSS v4,
+  so we've added these compatibility styles to make sure everything still
+  looks the same as it did with Tailwind CSS v3.
+
+  If we ever want to remove these styles, we need to add an explicit border
+  color utility to any element that depends on these defaults.
+*/
+@layer base {
+    *,
+    ::after,
+    ::before,
+    ::backdrop,
+    ::file-selector-button {
+        border-color: var(--color-gray-200, currentColor);
+    }
+}
+
+:root {
+    --background: hsl(0, 0%, 100%);
+    --foreground: hsl(0, 0%, 3.9%);
+    --card: hsl(0, 0%, 100%);
+    --card-foreground: hsl(0, 0%, 3.9%);
+    --popover: hsl(0, 0%, 100%);
+    --popover-foreground: hsl(0, 0%, 3.9%);
+    --primary: hsl(0, 0%, 9%);
+    --primary-foreground: hsl(0, 0%, 98%);
+    --secondary: hsl(0, 0%, 96.1%);
+    --secondary-foreground: hsl(0, 0%, 9%);
+    --muted: hsl(0, 0%, 96.1%);
+    --muted-foreground: hsl(0, 0%, 45.1%);
+    --accent: hsl(0, 0%, 96.1%);
+    --accent-foreground: hsl(0, 0%, 9%);
+    --destructive: hsl(0, 84.2%, 60.2%);
+    --destructive-foreground: hsl(0, 0%, 98%);
+    --border: hsl(0, 0%, 92.8%);
+    --input: hsl(0, 0%, 89.8%);
+    --ring: hsl(0, 0%, 3.9%);
+    --chart-1: hsl(12, 76%, 61%);
+    --chart-2: hsl(173, 58%, 39%);
+    --chart-3: hsl(197, 37%, 24%);
+    --chart-4: hsl(43, 74%, 66%);
+    --chart-5: hsl(27, 87%, 67%);
+    --radius: 0.5rem;
+    --sidebar-background: hsl(0, 0%, 98%);
+    --sidebar-foreground: hsl(240, 5.3%, 30%);
+    --sidebar-primary: hsl(0, 0%, 10%);
+    --sidebar-primary-foreground: hsl(0, 0%, 98%);
+    --sidebar-accent: hsl(0, 0%, 94%);
+    --sidebar-accent-foreground: hsl(0, 0%, 30%);
+    --sidebar-border: hsl(0, 0%, 91%);
+    --sidebar-ring: hsl(217.2, 91.2%, 59.8%);
+}
+
+.dark {
+    --background: hsl(0, 0%, 3.9%);
+    --foreground: hsl(0, 0%, 98%);
+    --card: hsl(0, 0%, 3.9%);
+    --card-foreground: hsl(0, 0%, 98%);
+    --popover: hsl(0, 0%, 3.9%);
+    --popover-foreground: hsl(0, 0%, 98%);
+    --primary: hsl(0, 0%, 98%);
+    --primary-foreground: hsl(0, 0%, 9%);
+    --secondary: hsl(0, 0%, 14.9%);
+    --secondary-foreground: hsl(0, 0%, 98%);
+    --muted: hsl(0, 0%, 6.9%);
+    --muted-foreground: hsl(0, 0%, 63.9%);
+    --accent: hsl(0, 0%, 14.9%);
+    --accent-foreground: hsl(0, 0%, 98%);
+    --destructive: hsl(0, 84%, 60%);
+    --destructive-foreground: hsl(0, 0%, 98%);
+    --border: hsl(0, 0%, 14.9%);
+    --input: hsl(0, 0%, 14.9%);
+    --ring: hsl(0, 0%, 83.1%);
+    --chart-1: hsl(220, 70%, 50%);
+    --chart-2: hsl(160, 60%, 45%);
+    --chart-3: hsl(30, 80%, 55%);
+    --chart-4: hsl(280, 65%, 60%);
+    --chart-5: hsl(340, 75%, 55%);
+    --sidebar-background: hsl(0, 0%, 7%);
+    --sidebar-foreground: hsl(0, 0%, 80%);
+    --sidebar-primary: hsl(360, 100%, 100%);
+    --sidebar-primary-foreground: hsl(0, 0%, 100%);
+    --sidebar-accent: hsl(0, 0%, 15.9%);
+    --sidebar-accent-foreground: hsl(240, 4.8%, 95.9%);
+    --sidebar-border: hsl(0, 0%, 15.9%);
+    --sidebar-ring: hsl(217.2, 91.2%, 59.8%);
+}
+
+@layer base {
+    * {
+        @apply border-border;
+    }
+
+    body {
+        @apply bg-background text-foreground;
+    }
+}
+
+/* === JWisdom 官網字體：Noto Sans TC === */
+@theme {
+    --font-sans:
+        'Noto Sans TC', 'PingFang TC', 'Microsoft JhengHei', ui-sans-serif,
+        system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji';
+}
+
+/* === JWisdom 動態效果 === */
+@keyframes jw-float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-7px); }
+}
+@keyframes jw-pulse-glow {
+    0%, 100% { box-shadow: 0 0 32px -8px rgba(56, 189, 248, 0.6); }
+    50% { box-shadow: 0 0 60px 2px rgba(56, 189, 248, 0.95); }
+}
+@keyframes jw-flow { to { stroke-dashoffset: -100; } }
+@keyframes jw-blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.25; } }
+@keyframes jw-reveal { from { opacity: 0; transform: translateY(26px); } to { opacity: 1; transform: none; } }
+
+.jw-float { animation: jw-float 4.5s ease-in-out infinite; }
+.jw-float-2 { animation: jw-float 5.5s ease-in-out infinite 0.9s; }
+.jw-core { animation: jw-pulse-glow 2.6s ease-in-out infinite; }
+.jw-flow { stroke-dasharray: 1.4 2.6; animation: jw-flow 3s linear infinite; }
+.jw-blink { animation: jw-blink 1.6s ease-in-out infinite; }
+
+.reveal { opacity: 0; }
+.reveal.in { animation: jw-reveal 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards; }
+.reveal.d1.in { animation-delay: 0.08s; }
+.reveal.d2.in { animation-delay: 0.16s; }
+.reveal.d3.in { animation-delay: 0.24s; }
+.reveal.d4.in { animation-delay: 0.32s; }
+.reveal.d5.in { animation-delay: 0.40s; }
+
+@media (prefers-reduced-motion: reduce) {
+    .jw-float, .jw-float-2, .jw-core, .jw-flow, .jw-blink { animation: none !important; }
+    .reveal { opacity: 1; }
+    .reveal.in { animation: none !important; }
+}
+
+/* === 強制動畫覆蓋（用戶要求要明顯會動，忽略系統減少動態）=== */
+@keyframes jw-float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-12px); }
+}
+@keyframes jw-pulse-glow {
+    0%, 100% { box-shadow: 0 0 26px -6px rgba(56, 189, 248, 0.55); transform: scale(1); }
+    50% { box-shadow: 0 0 66px 4px rgba(56, 189, 248, 1); transform: scale(1.06); }
+}
+.jw-float { animation: jw-float 3.6s ease-in-out infinite !important; }
+.jw-float-2 { animation: jw-float 4.4s ease-in-out infinite 0.6s !important; }
+.jw-core { animation: jw-pulse-glow 2.2s ease-in-out infinite !important; }
+.jw-flow { stroke-dasharray: 6 4 !important; animation: jw-flow 1.1s linear infinite !important; }
+.jw-blink { animation: jw-blink 1.3s ease-in-out infinite !important; }
+.reveal.in { animation: jw-reveal 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards !important; }
+
+/* === 動畫節奏調慢、調柔（用戶反映太快有壓力）=== */
+@keyframes jw-float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-6px); }
+}
+@keyframes jw-pulse-glow {
+    0%, 100% { box-shadow: 0 0 22px -8px rgba(56, 189, 248, 0.4); transform: scale(1); }
+    50% { box-shadow: 0 0 38px -4px rgba(56, 189, 248, 0.65); transform: scale(1.015); }
+}
+@keyframes jw-blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.55; }
+}
+.jw-float { animation: jw-float 8s ease-in-out infinite !important; }
+.jw-float-2 { animation: jw-float 9s ease-in-out infinite 1.2s !important; }
+.jw-core { animation: jw-pulse-glow 5.5s ease-in-out infinite !important; }
+.jw-flow { stroke-dasharray: 3 5 !important; animation: jw-flow 5s linear infinite !important; }
+.jw-blink { animation: jw-blink 3.2s ease-in-out infinite !important; }
+.reveal.in { animation: jw-reveal 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards !important; }
+
+@plugin '@tailwindcss/typography';
+
+/* 合作夥伴 logo 跑馬燈（無限水平捲動，滑過暫停；無視系統 reduced-motion 設定確保動畫播放） */
+@keyframes jw-marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+.animate-marquee { animation: jw-marquee 80s linear infinite; animation-play-state: running; }
+/* 滑鼠移到跑馬燈區（含 logo）時暫停，方便點選 */
+.group:hover .animate-marquee { animation-play-state: paused; }

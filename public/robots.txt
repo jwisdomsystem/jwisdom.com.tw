@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+Disallow: /admin
+Disallow: /dashboard
+Disallow: /settings
+Disallow: /login
+
+Sitemap: https://www.jwisdom.com.tw/sitemap.xml
