@@ -1,3 +1,4 @@
+import { router } from '@inertiajs/react';
 import { useTranslation } from 'react-i18next';
 import { normalizeLocale, SUPPORTED_LOCALES, type Locale } from '@/i18n';
 
@@ -20,6 +21,9 @@ export default function LanguageSwitcher({ className = '' }: { className?: strin
         if (locale === current) return;
         setLocaleCookie(locale);
         i18n.changeLanguage(locale);
+        // Reload so server-rendered, DB-backed content (products, news, banners…)
+        // comes back in the newly selected locale, not just the t() UI strings.
+        router.reload();
     };
 
     return (

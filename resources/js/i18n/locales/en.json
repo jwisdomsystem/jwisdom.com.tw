@@ -6,36 +6,36 @@
         "why": "About Us",
         "news": "News",
         "insights": "Insights",
-        "contact": "About & Contact"
+        "contact": "Contact"
     },
     "header": {
         "start": "Get Started",
-        "chooseProduct": "Choose a product to begin",
+        "chooseProduct": "Pick a product to get started",
         "contactConsultant": "Talk to a Consultant",
         "menu": "Menu"
     },
     "startMenu": {
         "shopName": "IoT Shop",
-        "shopDesc": "Maker / IoT electronic parts",
+        "shopDesc": "Maker & IoT components",
         "chataiName": "ChatAI Realistic CS",
-        "chataiDesc": "AI multi-channel customer service",
+        "chataiDesc": "AI omnichannel customer service",
         "autogrowthName": "AutoGrowth",
-        "autogrowthDesc": "AI-powered customer acquisition"
+        "autogrowthDesc": "AI-powered lead generation"
     },
     "footer": {
         "services": "Services",
         "products": "Products",
         "company": "Company",
-        "companyIntro": "About the Company",
+        "companyIntro": "About Us",
         "works": "Case Studies",
         "news": "News",
         "insights": "Insights",
         "faq": "FAQ",
-        "contactUs": "Contact Us",
-        "noProducts": "No products configured yet",
+        "contactUs": "Contact",
+        "noProducts": "No products yet",
         "terms": "Terms of Use",
         "privacy": "Privacy Policy",
-        "tagline": "Your technology partner for real-world business. From system development and web apps to on-site integration, we help organizations turn ideas into stable, working systems.",
+        "tagline": "Your technology partner for getting things done — from custom systems and web apps to on-site integration, we turn ideas into software that runs reliably in the real world.",
         "copyright": "© {{year}} JWisdom. All rights reserved."
     },
     "common": {
@@ -49,7 +49,7 @@
         "viewNews": "View News"
     },
     "partners": {
-        "subtitle": "Powered by the world's leading technology ecosystem to give your product the strongest backing"
+        "subtitle": "Backed by the world's leading technology partners."
     },
     "home": {
         "hero": {
@@ -57,131 +57,131 @@
             "titlePre": "Turning complex technology",
             "titleMid": "into ",
             "titleHighlight": "systems that just work",
-            "lead": "Whether it's a government project, enterprise transformation, or O2O integration for physical spaces — we don't just write code, we know how to make systems run reliably in the real world.",
-            "ctaEval": "Evaluate Your Project",
-            "ctaCases": "View Case Studies",
-            "tags": ["System Architecture", "Enterprise Digital Transformation", "OMO Smart Spaces"]
+            "lead": "Government projects, enterprise transformation, on-site O2O integration — we don't just write code. We know how to make systems run reliably in the real world.",
+            "ctaEval": "Assess My Project",
+            "ctaCases": "See Our Work",
+            "tags": ["System Architecture", "Digital Transformation", "OMO Smart Spaces"]
         },
         "diagram": {
             "client": "Client App",
             "core": "Core System",
-            "field": "Field / Devices"
+            "field": "Field & Devices"
         },
         "services": {
-            "title": "End-to-End Digital Solutions",
-            "subtitle": "From system development to on-site integration, we provide one-stop technical services that help organizations turn ideas into stable, working systems.",
+            "title": "Full-Stack Digital Solutions",
+            "subtitle": "From development to on-site integration, we deliver everything you need to turn an idea into a system that works.",
             "ctaCardTitle": "Not sure where to start?",
-            "ctaCardDesc": "Tell us what you need and our consultants will help you clarify direction and assess feasibility.",
+            "ctaCardDesc": "Tell us what you need and our consultants will help you find direction and check feasibility.",
             "ctaCardBtn": "Free Consultation"
         },
         "ai": {
-            "titlePre": "Make AI your business's ",
+            "titlePre": "Turn AI into your business's ",
             "titleHighlight": "competitive edge",
-            "subtitle": "From generative-AI customer service to smart customer acquisition, we turn the latest AI technology into products and services that are genuinely usable and deliver results.",
+            "subtitle": "From generative-AI customer service to smart lead generation, we turn the latest AI into products that are genuinely useful — and that deliver results.",
             "btnChatai": "Meet ChatAI",
             "btnAutogrowth": "Meet AutoGrowth"
         },
         "products": {
             "title": "Our Products",
-            "subtitle": "Beyond custom development, we build our own SaaS products — from e-commerce and AI customer service to smart customer acquisition — to help businesses upgrade across the board.",
+            "subtitle": "Beyond custom builds, we develop our own SaaS products — from e-commerce to AI customer service and smart lead generation — to help businesses level up across the board.",
             "gotoSite": "Visit Site"
         },
         "works": {
             "title": "Case Studies",
             "nextTitle": "The Next Success Story",
-            "nextDesc": "Could Be Your Project"
+            "nextDesc": "Could Be Yours"
         },
         "insights": {
             "title": "Insights",
-            "subtitle": "Stay on top of industry trends and hands-on perspectives in security, architecture, AI and more.",
+            "subtitle": "Stay ahead with hands-on takes on security, architecture, AI and the trends shaping the industry.",
             "more": "More insights"
         },
         "why": {
-            "title": "Why Choose Us"
+            "title": "Why JWisdom"
         },
         "process": {
             "title": "How We Work",
-            "subtitle": "Four clear, transparent steps — from the first chat to long-term operations, we're with you the whole way."
+            "subtitle": "Four clear steps — from the first conversation to long-term operations, we're with you the whole way."
         },
         "cta": {
-            "title": "Got an idea and looking for someone to build it with?",
-            "subtitle": "Whether it's a brand-new system, an upgrade of an old one, or on-site integration — let's talk, and we'll evaluate your project for free.",
-            "btnEval": "Free Project Assessment",
-            "btnCases": "View Case Studies"
+            "title": "Got an idea and need someone to build it with?",
+            "subtitle": "New build, upgrade, or on-site integration — let's talk. We'll assess your project for free.",
+            "btnEval": "Get a Free Assessment",
+            "btnCases": "See Our Work"
         },
-        "promoLearnMore": "Learn now",
+        "promoLearnMore": "Learn more",
         "seo": {
             "title": "JWisdom｜AIoT Experts · Software Development & System Integration",
             "ogTitle": "JWisdom｜Your Technology Partner for Real-World Business",
-            "desc": "JWisdom is your technology partner for real-world business — software development, web & app design, government and education systems, AI integration and digital marketing — helping enterprises turn ideas into stable, working systems."
+            "desc": "JWisdom is your technology partner for real-world business — software development, web and app design, government and education systems, AI integration and digital marketing. We turn ideas into systems that run reliably."
         },
         "defaults": {
             "stats": [
                 { "value": "15+", "label": "Years of Experience" },
                 { "value": "200+", "label": "Projects Delivered" },
-                { "value": "50+", "label": "Government / Enterprise Clients" },
+                { "value": "50+", "label": "Government & Enterprise Clients" },
                 { "value": "98%", "label": "On-Time Delivery" }
             ],
             "products": [
-                { "name": "IoT Shop", "en": "JWisdom Shop", "tag": "E-commerce · Maker Parts", "desc": "A one-stop shop for maker and IoT electronic parts — Raspberry Pi, Arduino, ESP, Jetson, sensors and modules of all kinds, covering everything from prototyping to mass production.", "features": ["Thousands of boards and modules", "Online payments and membership system", "Technical selection advice"] },
-                { "name": "ChatAI Realistic CS", "en": "AI Realistic CS", "tag": "AI Customer Service · SaaS", "desc": "An AI-powered realistic customer-service platform that integrates LINE and other channels, with 24/7 automated replies, bookings and lead management — so service never sleeps.", "features": ["Multi-channel integration (LINE…)", "Bookings and lead management", "Customizable personas and scripts"] },
-                { "name": "AutoGrowth", "en": "AutoGrowth", "tag": "AI Marketing · Growth", "desc": "An AI-powered customer-acquisition and growth system: automatic short-video generation, review and reputation management, hot-lead analysis and automated follow-up sequences — turning traffic into repeat customers.", "features": ["AI short-video generation", "Hot-lead analysis and follow-up", "Review and reputation management"] }
+                { "name": "IoT Shop", "en": "JWisdom Shop", "tag": "E-commerce · Maker Parts", "desc": "A one-stop shop for maker and IoT components — Raspberry Pi, Arduino, ESP, Jetson, sensors and modules — covering everything from prototyping to mass production.", "features": ["Thousands of boards and modules", "Built-in payments and membership", "Help choosing the right parts"] },
+                { "name": "ChatAI Realistic CS", "en": "AI Realistic CS", "tag": "AI Customer Service · SaaS", "desc": "A lifelike AI customer-service platform across LINE and other channels, with 24/7 replies, bookings and lead management — so your service never sleeps.", "features": ["Omnichannel (LINE and more)", "Bookings and lead management", "Custom personas and scripts"] },
+                { "name": "AutoGrowth", "en": "AutoGrowth", "tag": "AI Marketing · Growth", "desc": "An AI-powered growth engine: auto-generated short videos, review and reputation management, hot-lead scoring and automated follow-ups — turning traffic into repeat customers.", "features": ["AI short-video generation", "Hot-lead scoring and follow-up", "Review and reputation management"] }
             ],
             "why": [
-                { "title": "Strategy First", "desc": "We clarify your business goals and use cases before choosing the technology, so we never build a system no one uses." },
-                { "title": "Solid Engineering", "desc": "A full-stack in-house team across front-end, back-end, cloud and AI — no outsourcing, no bottlenecks." },
-                { "title": "Built to Ship", "desc": "We understand the realities of the field, so systems run stably, work well and stay maintainable on-site." },
-                { "title": "Long-Term Partner", "desc": "After delivery, we keep supporting you from operations to optimization — growing the system together." }
+                { "title": "Strategy First", "desc": "We get clear on your goals and use cases before picking the tech — so we never build something no one uses." },
+                { "title": "Solid Engineering", "desc": "A full-stack in-house team across front-end, back-end, cloud and AI. No outsourcing, no bottlenecks." },
+                { "title": "Built for the Real World", "desc": "We know what it takes on the ground, so your system runs reliably and stays easy to maintain." },
+                { "title": "In It for the Long Haul", "desc": "After launch we stick around — from operations to optimization, we help your system grow." }
             ],
             "process": [
-                { "title": "Discovery", "desc": "We dive into your business goals, use cases and pain points, and assess feasibility for free." },
-                { "title": "Planning & Design", "desc": "We propose the system architecture, workflows and interface design, then start once direction and timeline are confirmed." },
-                { "title": "Development", "desc": "Agile, iterative development with a transparent process and progress you can check anytime, ensuring on-time delivery." },
-                { "title": "Operations & Optimization", "desc": "Launch isn't the end — we keep monitoring, maintaining and optimizing, helping you nurture the system." }
+                { "title": "Discovery", "desc": "We dig into your goals, use cases and pain points, and assess feasibility for free." },
+                { "title": "Planning & Design", "desc": "We map out the architecture, workflows and interface, then build once direction and timeline are set." },
+                { "title": "Development", "desc": "Agile, iterative, and transparent — check progress anytime, and we ship on schedule." },
+                { "title": "Operations & Optimization", "desc": "Launch isn't the finish line. We keep monitoring, maintaining and improving alongside you." }
             ]
         }
     },
     "faq": {
         "title": "FAQ",
         "seoTitle": "FAQ｜JWisdom",
-        "seoDesc": "JWisdom FAQ: service process, quotes and collaboration, technical operations and more."
+        "seoDesc": "JWisdom FAQ: our process, quotes and engagement, technical operations and more."
     },
     "errors": {
         "generic": { "title": "Something went wrong", "desc": "Please try again later." },
-        "403": { "title": "No Permission", "desc": "You don't have permission to access this page." },
-        "404": { "title": "Page Not Found", "desc": "The page you're looking for doesn't exist or has been removed." },
-        "419": { "title": "Session Expired", "desc": "The page has expired. Please refresh and try again." },
+        "403": { "title": "Access Denied", "desc": "You don't have permission to view this page." },
+        "404": { "title": "Page Not Found", "desc": "The page you're looking for doesn't exist or has been moved." },
+        "419": { "title": "Session Expired", "desc": "This page has expired. Please refresh and try again." },
         "429": { "title": "Too Many Requests", "desc": "Please wait a moment and try again." },
         "500": { "title": "Server Error", "desc": "Something went wrong on our end. We're on it." },
-        "503": { "title": "Under Maintenance", "desc": "The site is under maintenance. Please check back soon." }
+        "503": { "title": "Under Maintenance", "desc": "We're doing some maintenance. Please check back soon." }
     },
     "contact": {
-        "seoTitle": "About & Contact｜JWisdom",
-        "seoDesc": "Get in touch with JWisdom — software development, system integration, AI applications and digital transformation consulting. Leave your request and a consultant will get back to you soon.",
-        "ogDesc": "Get in touch with JWisdom — software development, system integration, AI applications and digital transformation consulting.",
-        "title": "About & Contact",
-        "lead": "Your technology partner for real-world business. Whether it's a brand-new system, an upgrade of an old one, or on-site integration, leave your request and our consultants will get back to you soon with a free assessment and recommendations.",
-        "infoTitle": "Contact Information",
-        "infoSubtitle": "Feel free to reach us through any of the channels below, or fill out the form on the right.",
+        "seoTitle": "Contact｜JWisdom",
+        "seoDesc": "Get in touch with JWisdom — software development, system integration, AI applications and digital transformation. Leave your details and a consultant will get back to you soon.",
+        "ogDesc": "Get in touch with JWisdom — software development, system integration, AI applications and digital transformation.",
+        "title": "Contact",
+        "lead": "Your technology partner for getting things done. New build, upgrade, or on-site integration — leave your details and our consultants will get back to you with a free assessment and recommendations.",
+        "infoTitle": "Get in Touch",
+        "infoSubtitle": "Reach us through any of the channels below, or just fill out the form.",
         "labelPhone": "Phone",
         "labelFax": "Fax",
         "labelAddress": "Address",
         "hoursTitle": "Business Hours",
         "hoursDefault": "Mon–Fri 09:00–18:00",
-        "lineJoin": "Add Official LINE",
-        "lineScan": "Scan the QR code on the left to add us as a friend and get the fastest reply.",
-        "formTitle": "Fill Out the Contact Form",
-        "formNote": "Fields marked * are required. We'll reply as soon as we receive your message.",
+        "lineJoin": "Add Us on LINE",
+        "lineScan": "Scan the QR code to add us and get the fastest reply.",
+        "formTitle": "Send Us a Message",
+        "formNote": "Fields marked * are required. We'll get back to you as soon as we can.",
         "fieldName": "Name *",
         "fieldCompany": "Company / Organization",
         "fieldPhone": "Phone",
         "fieldSubject": "Subject",
         "subjectPlaceholder": "e.g. I'd like to build a membership booking system",
-        "fieldMessage": "Your Request *",
-        "messagePlaceholder": "Briefly describe your needs, goals or the problem you want to solve…",
+        "fieldMessage": "Your Message *",
+        "messagePlaceholder": "Tell us a bit about your needs, goals, or the problem you're trying to solve…",
         "submitting": "Sending…",
-        "submit": "Send Request",
-        "mapTitle": "Directions & Location"
+        "submit": "Send Message",
+        "mapTitle": "Find Us"
     },
     "news": {
         "empty": "No news yet.",
@@ -195,13 +195,13 @@
     },
     "services": {
         "label": "Services",
-        "ctaConsult": "Get a Free Consultation on This Service",
+        "ctaConsult": "Get a Free Consultation",
         "others": "Other Services"
     },
     "works": {
         "label": "Case Studies",
         "gotoSite": "Visit Site",
         "back": "Back to Case Studies",
-        "others": "Other Case Studies"
+        "others": "More Case Studies"
     }
 }
