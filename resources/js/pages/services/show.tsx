@@ -1,5 +1,6 @@
 import { Head, Link } from '@inertiajs/react';
 import SiteLayout from '@/layouts/site-layout';
+import { track } from '@/lib/analytics';
 
 type Service = { title: string; slug: string; summary?: string; body?: string; icon_bg?: string; icon_text?: string; meta_title?: string; meta_description?: string };
 type Other = { title: string; slug: string; icon_bg?: string; icon_text?: string };
@@ -67,7 +68,7 @@ export default function ServiceShow({ service, others }: { service: Service; oth
                 ) : (
                     <p className="leading-relaxed text-slate-600">{service.summary}</p>
                 )}
-                <a href="/contact" className="mt-8 inline-flex items-center gap-2 rounded-full bg-sky-400 px-6 py-3 font-bold text-slate-900 transition hover:brightness-95">免費諮詢這項服務 <span>→</span></a>
+                <a href="/contact" onClick={() => track('cta_clicked', { button_text: '免費諮詢這項服務', location: 'service_page', service: service.slug })} className="mt-8 inline-flex items-center gap-2 rounded-full bg-sky-400 px-6 py-3 font-bold text-slate-900 transition hover:brightness-95">免費諮詢這項服務 <span>→</span></a>
             </div>
 
             {others.length > 0 && (

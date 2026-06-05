@@ -1,6 +1,6 @@
-import { Head, useForm } from '@inertiajs/react';
+import { Head, useForm, usePage } from '@inertiajs/react';
 import { LoaderCircle } from 'lucide-react';
-import { FormEventHandler } from 'react';
+import { FormEventHandler, useEffect, useRef } from 'react';
 
 import InputError from '@/components/input-error';
 import { Button } from '@/components/ui/button';
@@ -13,6 +13,7 @@ interface LoginForm {
     email: string;
     password: string;
     remember: boolean;
+    cf_turnstile_response: string;
 }
 
 interface LoginProps {
@@ -20,17 +21,75 @@ interface LoginProps {
     canResetPassword: boolean;
 }
 
+declare global {
+    interface Window {
+        turnstile?: {
+            render: (el: HTMLElement, opts: Record<string, unknown>) => string;
+            reset: (id?: string) => void;
+        };
+    }
+}
+
 export default function Login({ status }: LoginProps) {
+    const { turnstileSiteKey } = usePage().props as { turnstileSiteKey?: string };
     const { data, setData, post, processing, errors, reset } = useForm<LoginForm>({
         email: '',
         password: '',
         remember: false,
+        cf_turnstile_response: '',
     });
+
+    const tsRef = useRef<HTMLDivElement>(null);
+    const widgetId = useRef<string | null>(null);
+
+    // 載入並渲染 Cloudflare Turnstile（後台有設定 site key 才啟用）
+    useEffect(() => {
+        if (!turnstileSiteKey || typeof window === 'undefined') return;
+
+        const renderWidget = () => {
+            if (!window.turnstile || !tsRef.current || widgetId.current) return;
+            widgetId.current = window.turnstile.render(tsRef.current, {
+                sitekey: turnstileSiteKey,
+                language: 'zh-tw',
+                callback: (token: string) => setData('cf_turnstile_response', token),
+                'expired-callback': () => setData('cf_turnstile_response', ''),
+                'error-callback': () => setData('cf_turnstile_response', ''),
+            });
+        };
+
+        if (window.turnstile) {
+            renderWidget();
+        } else if (!document.getElementById('cf-turnstile-script')) {
+            const s = document.createElement('script');
+            s.id = 'cf-turnstile-script';
+            s.src = 'https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit';
+            s.async = true;
+            s.defer = true;
+            s.onload = renderWidget;
+            document.head.appendChild(s);
+        } else {
+            const t = setInterval(() => {
+                if (window.turnstile) {
+                    clearInterval(t);
+                    renderWidget();
+                }
+            }, 200);
+            return () => clearInterval(t);
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [turnstileSiteKey]);
 
     const submit: FormEventHandler = (e) => {
         e.preventDefault();
         post(route('login'), {
-            onFinish: () => reset('password'),
+            onFinish: () => {
+                reset('password');
+                // 重置 widget 以便下次登入取得新 token
+                if (turnstileSiteKey && window.turnstile && widgetId.current) {
+                    window.turnstile.reset(widgetId.current);
+                    setData('cf_turnstile_response', '');
+                }
+            },
         });
     };
 
@@ -81,6 +140,8 @@ export default function Login({ status }: LoginProps) {
                         />
                         <Label htmlFor="remember">記住我</Label>
                     </div>
+
+                    {turnstileSiteKey && <div ref={tsRef} className="min-h-[65px]" />}
 
                     <Button type="submit" className="mt-2 w-full bg-sky-500 hover:bg-sky-600" tabIndex={4} disabled={processing}>
                         {processing && <LoaderCircle className="h-4 w-4 animate-spin" />}

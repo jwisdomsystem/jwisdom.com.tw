@@ -29,6 +29,8 @@ class IntegrationController extends Controller
             'cf_account_id' => (string) (Setting::get('cf_account_id') ?: ''),
             'cf_api_token' => (string) (Setting::get('cf_api_token') ?: ''),
             'cf_image_model' => Setting::get('cf_image_model') ?: '@cf/black-forest-labs/flux-1-schnell',
+            'turnstile_site_key' => (string) (Setting::get('turnstile_site_key') ?: ''),
+            'turnstile_secret_key' => (string) (Setting::get('turnstile_secret_key') ?: ''),
         ]);
     }
 
@@ -74,6 +76,8 @@ class IntegrationController extends Controller
             'cf_account_id' => ['nullable', 'string', 'max:64'],
             'cf_api_token' => ['nullable', 'string', 'max:200'],
             'cf_image_model' => ['nullable', 'string', 'max:120'],
+            'turnstile_site_key' => ['nullable', 'string', 'max:120'],
+            'turnstile_secret_key' => ['nullable', 'string', 'max:120'],
         ]);
 
         // 整理多把金鑰（一行一把，去重去空白）
@@ -89,6 +93,9 @@ class IntegrationController extends Controller
         Setting::set('cf_account_id', trim((string) ($data['cf_account_id'] ?? '')));
         Setting::set('cf_api_token', trim((string) ($data['cf_api_token'] ?? '')));
         Setting::set('cf_image_model', $data['cf_image_model'] ?: '@cf/black-forest-labs/flux-1-schnell');
+
+        Setting::set('turnstile_site_key', trim((string) ($data['turnstile_site_key'] ?? '')));
+        Setting::set('turnstile_secret_key', trim((string) ($data['turnstile_secret_key'] ?? '')));
 
         // 清模型快取，讓清單依新金鑰即時刷新
         if ($first) {

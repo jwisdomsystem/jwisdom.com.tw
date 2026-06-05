@@ -2,9 +2,11 @@
 
 namespace App\Http\Requests\Auth;
 
+use App\Models\Setting;
 use Illuminate\Auth\Events\Lockout;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\Str;
 use Illuminate\Validation\ValidationException;
@@ -41,6 +43,8 @@ class LoginRequest extends FormRequest
     {
         $this->ensureIsNotRateLimited();
 
+        $this->verifyTurnstile();
+
         if (! Auth::attempt($this->only('email', 'password'), $this->boolean('remember'))) {
             RateLimiter::hit($this->throttleKey());
 
@@ -50,6 +54,43 @@ class LoginRequest extends FormRequest
         }
 
         RateLimiter::clear($this->throttleKey());
+    }
+
+    /**
+     * 驗證 Cloudflare Turnstile token（後台有設定 secret key 才檢查）。
+     *
+     * @throws \Illuminate\Validation\ValidationException
+     */
+    protected function verifyTurnstile(): void
+    {
+        $secret = trim((string) Setting::get('turnstile_secret_key'));
+        if ($secret === '') {
+            return; // 未啟用驗證碼
+        }
+
+        $token = (string) $this->input('cf_turnstile_response');
+        if ($token === '') {
+            throw ValidationException::withMessages([
+                'email' => '請完成「我不是機器人」驗證後再登入。',
+            ]);
+        }
+
+        try {
+            $res = Http::asForm()->timeout(10)->post('https://challenges.cloudflare.com/turnstile/v0/siteverify', [
+                'secret' => $secret,
+                'response' => $token,
+                'remoteip' => $this->ip(),
+            ]);
+            $ok = (bool) data_get($res->json(), 'success', false);
+        } catch (\Throwable $e) {
+            $ok = false;
+        }
+
+        if (! $ok) {
+            throw ValidationException::withMessages([
+                'email' => '驗證碼驗證失敗，請重新整理頁面後再試一次。',
+            ]);
+        }
     }
 
     /**

@@ -1,6 +1,7 @@
 import { Link, usePage } from '@inertiajs/react';
 import { MapPin, Phone, Printer, Mail } from 'lucide-react';
 import { type PropsWithChildren, useEffect, useRef, useState } from 'react';
+import { track, trackOutbound } from '@/lib/analytics';
 
 type Banner = { title?: string; subtitle?: string; body?: string; url?: string; cta_label?: string };
 
@@ -58,7 +59,7 @@ function StartMenu() {
                             href={m.url}
                             target="_blank"
                             rel="noopener noreferrer"
-                            onClick={() => setOpen(false)}
+                            onClick={() => { trackOutbound(m.name, m.url, 'header_start_menu'); setOpen(false); }}
                             className="group flex items-center justify-between gap-3 rounded-xl px-3 py-2.5 transition hover:bg-slate-50"
                         >
                             <span>
@@ -71,7 +72,7 @@ function StartMenu() {
                     <div className="my-1 border-t border-slate-100" />
                     <a
                         href="/contact"
-                        onClick={() => setOpen(false)}
+                        onClick={() => { track('cta_clicked', { button_text: '聯絡顧問', location: 'header_start_menu' }); setOpen(false); }}
                         className="flex items-center justify-between rounded-xl px-3 py-2.5 text-sm font-bold text-slate-700 transition hover:bg-slate-50"
                     >
                         聯絡顧問 <span className="text-sky-500">→</span>
@@ -184,6 +185,7 @@ function SocialLinks() {
                         rel="noopener noreferrer"
                         aria-label={ico.label}
                         title={ico.label}
+                        onClick={() => track('social_click', { network: key, location: 'footer' })}
                         className="inline-flex h-8 w-8 items-center justify-center rounded-full text-slate-400 transition hover:bg-white/10 hover:text-sky-400"
                     >
                         <svg viewBox="0 0 24 24" fill="currentColor" className="h-[18px] w-[18px]"><path d={ico.path} /></svg>
@@ -230,7 +232,7 @@ function Footer() {
                     <h4 className="mb-4 text-sm font-semibold text-white">我們的產品</h4>
                     <ul className="space-y-2.5 text-sm">
                         {products.length > 0 ? products.map((p) => (
-                            <li key={p.name}><a href={p.url || '#'} target="_blank" rel="noopener noreferrer" className="hover:text-sky-400">{p.name}</a></li>
+                            <li key={p.name}><a href={p.url || '#'} target="_blank" rel="noopener noreferrer" onClick={() => p.url && trackOutbound(p.name, p.url, 'footer_products')} className="hover:text-sky-400">{p.name}</a></li>
                         )) : <li className="text-slate-500">尚未設定產品</li>}
                     </ul>
                 </div>
@@ -331,7 +333,7 @@ function PartnersStrip() {
             <img src={p.src} alt={p.name} loading="lazy" className="h-9 w-auto max-w-[140px] object-contain opacity-60 grayscale transition duration-300 hover:opacity-100 hover:grayscale-0" />
         );
         return p.url
-            ? <a key={p.name} href={p.url} target="_blank" rel="noopener noreferrer" title={p.name} className="shrink-0">{img}</a>
+            ? <a key={p.name} href={p.url} target="_blank" rel="noopener noreferrer" title={p.name} onClick={() => trackOutbound(p.name, p.url!, 'partners_strip')} className="shrink-0">{img}</a>
             : <span key={p.name} className="shrink-0">{img}</span>;
     };
 
@@ -380,8 +382,8 @@ function FloatingAd() {
                     ✕
                 </button>
                 {banner.subtitle && <div className="text-xs font-bold uppercase tracking-wider text-sky-500">{banner.subtitle}</div>}
-                <h4 className="mt-1 font-bold text-slate-900">{banner.title}</h4>
-                {banner.body && <p className="mt-1 text-sm leading-relaxed text-slate-500">{banner.body}</p>}
+                <h4 className="mt-1 font-bold text-slate-900 [word-break:keep-all]">{banner.title}</h4>
+                {banner.body && <p className="mt-1 text-xs leading-relaxed text-slate-500 [word-break:keep-all]">{banner.body}</p>}
                 {banner.url && (
                     <a
                         href={banner.url}

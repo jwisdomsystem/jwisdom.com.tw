@@ -1,6 +1,7 @@
 import { Head, useForm, usePage } from '@inertiajs/react';
 import { type FormEvent } from 'react';
 import SiteLayout from '@/layouts/site-layout';
+import { track } from '@/lib/analytics';
 
 type Settings = Record<string, string>;
 
@@ -20,7 +21,14 @@ export default function Contact() {
 
     const submit = (e: FormEvent) => {
         e.preventDefault();
-        post('/contact', { preserveScroll: true, onSuccess: () => reset() });
+        track('contact_form_submitted', { form_type: 'contact', has_company: !!data.company, has_phone: !!data.phone });
+        post('/contact', {
+            preserveScroll: true,
+            onSuccess: () => {
+                track('generate_lead', { form_type: 'contact', value: 1 });
+                reset();
+            },
+        });
     };
 
     const field = 'w-full rounded-lg border border-slate-200 px-4 py-3 text-slate-900 outline-none transition focus:border-sky-400 focus:ring-2 focus:ring-sky-100';
@@ -96,11 +104,11 @@ export default function Contact() {
                         <div className="mt-8 space-y-6">
                             <div className="flex items-start gap-4">
                                 <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-sky-100 text-sky-600"><svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth={2}><rect x="2" y="4" width="20" height="16" rx="2" /><path d="m2 7 10 6 10-6" /></svg></span>
-                                <div><div className="text-sm text-slate-400">Email</div><a href={`mailto:${email}`} className="font-bold text-slate-900 hover:text-sky-600">{email}</a></div>
+                                <div><div className="text-sm text-slate-400">Email</div><a href={`mailto:${email}`} onClick={() => track('contact_channel_clicked', { channel: 'email', location: 'contact_page' })} className="font-bold text-slate-900 hover:text-sky-600">{email}</a></div>
                             </div>
                             <div className="flex items-start gap-4">
                                 <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-emerald-100 text-emerald-600"><svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth={2}><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z" /></svg></span>
-                                <div><div className="text-sm text-slate-400">電話</div><div className="font-bold text-slate-900">{phone}</div></div>
+                                <div><div className="text-sm text-slate-400">電話</div><a href={`tel:${phone.replace(/[^\d+]/g, '')}`} onClick={() => track('contact_channel_clicked', { channel: 'phone', location: 'contact_page' })} className="font-bold text-slate-900 hover:text-sky-600">{phone}</a></div>
                             </div>
                             {fax && (
                                 <div className="flex items-start gap-4">

@@ -1,6 +1,6 @@
 import { router, useForm } from '@inertiajs/react';
 import { type FormEvent, useState } from 'react';
-import { Sparkles, Image as ImageIcon, Newspaper } from 'lucide-react';
+import { Sparkles, Image as ImageIcon, Newspaper, ShieldCheck } from 'lucide-react';
 import AdminLayout from '@/layouts/admin-layout';
 
 const fld = 'w-full rounded-lg border border-slate-300 px-3 py-2 text-sm text-slate-900 outline-none transition focus:border-sky-400 focus:ring-2 focus:ring-sky-100';
@@ -9,6 +9,7 @@ const lbl = 'mb-1.5 block text-sm font-semibold text-slate-700';
 type Props = {
     gemini_api_keys: string; gemini_model: string; gemini_models: string[]; insights_daily_count: string;
     cf_account_id: string; cf_api_token: string; cf_image_model: string;
+    turnstile_site_key: string; turnstile_secret_key: string;
 };
 
 function CardHead({ icon: Icon, title, desc }: { icon: typeof Sparkles; title: string; desc?: string }) {
@@ -31,6 +32,8 @@ export default function Integrations(props: Props) {
         cf_account_id: props.cf_account_id ?? '',
         cf_api_token: props.cf_api_token ?? '',
         cf_image_model: props.cf_image_model ?? '@cf/black-forest-labs/flux-1-schnell',
+        turnstile_site_key: props.turnstile_site_key ?? '',
+        turnstile_secret_key: props.turnstile_secret_key ?? '',
     });
     const modelOptions = Array.from(new Set([data.gemini_model, ...(props.gemini_models ?? [])].filter(Boolean)));
     const save = (e: FormEvent) => { e.preventDefault(); put('/admin/integrations', { preserveScroll: true }); };
@@ -123,6 +126,24 @@ export default function Integrations(props: Props) {
                                 </select>
                             </div>
                         </div>
+                    </section>
+                    {/* Cloudflare Turnstile（登入驗證碼） */}
+                    <section className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm xl:col-span-2">
+                        <CardHead icon={ShieldCheck} title="Cloudflare Turnstile（後台登入驗證碼）" desc="防止機器人暴力登入。免費、無需點選圖片。留空則不啟用驗證。" />
+                        <div className="grid gap-5 sm:grid-cols-2">
+                            <div>
+                                <label className={lbl}>Site Key（網站金鑰，公開）</label>
+                                <input type="text" autoComplete="off" spellCheck={false} className={`${fld} font-mono`} value={data.turnstile_site_key} onChange={(e) => setData('turnstile_site_key', e.target.value)} placeholder="0x4AAAAAAA..." />
+                            </div>
+                            <div>
+                                <label className={lbl}>Secret Key（密鑰，保密）</label>
+                                <input type="text" autoComplete="off" spellCheck={false} className={`${fld} font-mono`} value={data.turnstile_secret_key} onChange={(e) => setData('turnstile_secret_key', e.target.value)} placeholder="0x4AAAAAAA..." />
+                            </div>
+                        </div>
+                        <p className="mt-3 text-xs text-slate-400">
+                            狀態：{data.turnstile_site_key && data.turnstile_secret_key ? <span className="font-semibold text-emerald-600">已啟用，登入頁會顯示驗證 ✓</span> : <span className="font-semibold text-slate-500">未設定（登入頁不顯示驗證）</span>}
+                            ．於 Cloudflare → Turnstile → Add widget 建立（hostname 填 <span className="font-mono">jwisdom.com.tw</span>，Mode 選 Managed），取得 Site Key 與 Secret Key。
+                        </p>
                     </section>
                 </div>
 

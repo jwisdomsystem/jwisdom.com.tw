@@ -1,6 +1,7 @@
 import { Head, usePage } from '@inertiajs/react';
 import { type ReactNode, useEffect, useState } from 'react';
 import SiteLayout from '@/layouts/site-layout';
+import { track } from '@/lib/analytics';
 
 type Service = { title: string; slug: string; summary: string; icon: string; icon_bg: string; icon_text: string };
 type Work = { name: string; slug: string; category: string; summary: string; year: string; cover_gradient: string; cover?: string };
@@ -221,7 +222,7 @@ export default function Home({ services, works, insights = [] }: { services: Ser
                             無論是政府專案、企業轉型，還是實體場域的 O2O 整合。<br className="hidden sm:block" />我們不只懂程式，更懂如何讓系統在真實場景中穩定運作。
                         </p>
                         <div className="mt-9 flex flex-wrap items-center gap-x-7 gap-y-4">
-                            <a href="/contact" className="inline-flex items-center gap-2 rounded-lg bg-sky-400 px-7 py-3.5 font-bold text-slate-900 transition hover:brightness-95">評估您的專案</a>
+                            <a href="/contact" onClick={() => track('cta_clicked', { button_text: '評估您的專案', location: 'home_hero' })} className="inline-flex items-center gap-2 rounded-lg bg-sky-400 px-7 py-3.5 font-bold text-slate-900 transition hover:brightness-95">評估您的專案</a>
                             <a href="/#works" className="inline-flex items-center gap-2 font-semibold text-slate-200 transition hover:text-white">查看成功案例 <span>→</span></a>
                         </div>
                         <div className="mt-8 flex flex-wrap gap-3">
@@ -304,7 +305,7 @@ export default function Home({ services, works, insights = [] }: { services: Ser
                         <div className="relative overflow-hidden rounded-2xl bg-slate-900 p-8 text-white">
                             <h3 className="text-xl font-bold">不確定從哪開始？</h3>
                             <p className="mt-2.5 text-sm leading-relaxed text-slate-300">告訴我們你的需求，由顧問協助釐清方向與評估可行性。</p>
-                            <a href="/contact" className="mt-5 inline-flex items-center gap-2 font-bold text-sky-400">免費諮詢 →</a>
+                            <a href="/contact" onClick={() => track('cta_clicked', { button_text: '免費諮詢', location: 'home_process' })} className="mt-5 inline-flex items-center gap-2 font-bold text-sky-400">免費諮詢 →</a>
                         </div>
                     </div>
                 </div>
@@ -490,7 +491,7 @@ export default function Home({ services, works, insights = [] }: { services: Ser
                         <h2 className="text-3xl font-black md:text-4xl">有想法，想找人一起把它做出來？</h2>
                         <p className="mx-auto mt-4 max-w-xl text-slate-300">不論是全新系統、舊系統升級，還是場域整合，先跟我們聊聊，免費評估您的專案。</p>
                         <div className="mt-8 flex flex-wrap justify-center gap-4">
-                            <a href="/contact" className="inline-flex items-center gap-2 rounded-lg bg-sky-400 px-8 py-3.5 font-bold text-slate-900 transition hover:brightness-95">免費評估專案 →</a>
+                            <a href="/contact" onClick={() => track('cta_clicked', { button_text: '免費評估專案', location: 'home_footer_cta' })} className="inline-flex items-center gap-2 rounded-lg bg-sky-400 px-8 py-3.5 font-bold text-slate-900 transition hover:brightness-95">免費評估專案 →</a>
                             <a href="/#works" className="inline-flex items-center gap-2 rounded-lg border border-white/20 px-8 py-3.5 font-semibold transition hover:bg-white/10">查看成功案例</a>
                         </div>
                     </div>
