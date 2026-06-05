@@ -1,4 +1,5 @@
 import { Head, Link } from '@inertiajs/react';
+import { useTranslation } from 'react-i18next';
 import SiteLayout from '@/layouts/site-layout';
 
 type Work = {
@@ -8,6 +9,9 @@ type Work = {
 };
 
 export default function WorkShow({ work, related }: { work: Work; related: Work[] }) {
+    const { t } = useTranslation();
+    const brand = t('common.brand');
+    const worksLabel = t('works.label');
     const desc = work.meta_description ?? work.summary ?? work.name;
     const ogImg = work.cover
         ? (work.cover.startsWith('http') ? work.cover : `https://www.jwisdom.com.tw${work.cover}`)
@@ -21,10 +25,10 @@ export default function WorkShow({ work, related }: { work: Work; related: Work[
         image: ogImg,
         ...(work.category && { genre: work.category }),
         ...(work.year && { dateCreated: work.year }),
-        creator: { '@type': 'Organization', name: '宸揚資科 JWisdom', url: 'https://www.jwisdom.com.tw' },
+        creator: { '@type': 'Organization', name: brand, url: 'https://www.jwisdom.com.tw' },
         publisher: {
             '@type': 'Organization',
-            name: '宸揚資科 JWisdom',
+            name: brand,
             logo: { '@type': 'ImageObject', url: 'https://www.jwisdom.com.tw/images/jwisdom-logo.png' },
         },
     };
@@ -32,21 +36,21 @@ export default function WorkShow({ work, related }: { work: Work; related: Work[
         '@context': 'https://schema.org',
         '@type': 'BreadcrumbList',
         itemListElement: [
-            { '@type': 'ListItem', position: 1, name: '首頁', item: 'https://www.jwisdom.com.tw/' },
-            { '@type': 'ListItem', position: 2, name: '精選實例', item: 'https://www.jwisdom.com.tw/#works' },
+            { '@type': 'ListItem', position: 1, name: t('common.home'), item: 'https://www.jwisdom.com.tw/' },
+            { '@type': 'ListItem', position: 2, name: worksLabel, item: 'https://www.jwisdom.com.tw/#works' },
             { '@type': 'ListItem', position: 3, name: work.name, item: `https://www.jwisdom.com.tw/works/${work.slug}` },
         ],
     };
     return (
         <SiteLayout>
-            <Head title={`${work.meta_title ?? work.name}｜精選實例｜宸揚資科 JWisdom`}>
+            <Head title={`${work.meta_title ?? work.name}｜${worksLabel}｜${brand}`}>
                 <meta name="description" content={desc} />
                 <link rel="canonical" href={`https://www.jwisdom.com.tw/works/${work.slug}`} />
                 <meta property="og:type" content="article" />
                 <meta property="og:title" content={work.name} />
                 <meta property="og:description" content={desc} />
                 <meta property="og:url" content={`https://www.jwisdom.com.tw/works/${work.slug}`} />
-                <meta property="og:site_name" content="宸揚資科 JWisdom" />
+                <meta property="og:site_name" content={brand} />
                 <meta property="og:image" content={ogImg} />
                 <meta name="twitter:card" content="summary_large_image" />
                 <meta name="twitter:image" content={ogImg} />
@@ -81,17 +85,17 @@ export default function WorkShow({ work, related }: { work: Work; related: Work[
                     <p className="leading-relaxed text-slate-600">{work.summary}</p>
                 )}
                 {work.url && (
-                    <a href={work.url} target="_blank" rel="noopener noreferrer" className="mt-8 inline-flex items-center gap-2 rounded-full bg-slate-900 px-6 py-3 font-bold text-white transition hover:bg-slate-800">前往網站 <span>→</span></a>
+                    <a href={work.url} target="_blank" rel="noopener noreferrer" className="mt-8 inline-flex items-center gap-2 rounded-full bg-slate-900 px-6 py-3 font-bold text-white transition hover:bg-slate-800">{t('works.gotoSite')} <span>→</span></a>
                 )}
                 <div className="mt-10 border-t border-slate-100 pt-6">
-                    <Link href="/#works" className="font-semibold text-sky-600 hover:underline">← 回精選實例</Link>
+                    <Link href="/#works" className="font-semibold text-sky-600 hover:underline">← {t('works.back')}</Link>
                 </div>
             </div>
 
             {related.length > 0 && (
                 <section className="bg-slate-50 py-16">
                     <div className="mx-auto max-w-7xl px-6">
-                        <h2 className="mb-8 text-xl font-bold text-slate-900">其他案例</h2>
+                        <h2 className="mb-8 text-xl font-bold text-slate-900">{t('works.others')}</h2>
                         <div className="grid gap-6 sm:grid-cols-3">
                             {related.map((r) => (
                                 <Link key={r.slug} href={`/works/${r.slug}`} className="group block overflow-hidden rounded-2xl border border-slate-100 bg-white shadow-sm transition hover:-translate-y-1 hover:shadow-lg">

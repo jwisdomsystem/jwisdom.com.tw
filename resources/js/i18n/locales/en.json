@@ -42,7 +42,11 @@
         "learnMore": "Learn more",
         "close": "Close",
         "closeAnnouncement": "Close announcement",
-        "closeAd": "Close ad"
+        "closeAd": "Close ad",
+        "brand": "JWisdom",
+        "home": "Home",
+        "backHome": "Back to Home",
+        "viewNews": "View News"
     },
     "partners": {
         "subtitle": "Powered by the world's leading technology ecosystem to give your product the strongest backing"
@@ -136,5 +140,68 @@
                 { "title": "Operations & Optimization", "desc": "Launch isn't the end — we keep monitoring, maintaining and optimizing, helping you nurture the system." }
             ]
         }
+    },
+    "faq": {
+        "title": "FAQ",
+        "seoTitle": "FAQ｜JWisdom",
+        "seoDesc": "JWisdom FAQ: service process, quotes and collaboration, technical operations and more."
+    },
+    "errors": {
+        "generic": { "title": "Something went wrong", "desc": "Please try again later." },
+        "403": { "title": "No Permission", "desc": "You don't have permission to access this page." },
+        "404": { "title": "Page Not Found", "desc": "The page you're looking for doesn't exist or has been removed." },
+        "419": { "title": "Session Expired", "desc": "The page has expired. Please refresh and try again." },
+        "429": { "title": "Too Many Requests", "desc": "Please wait a moment and try again." },
+        "500": { "title": "Server Error", "desc": "Something went wrong on our end. We're on it." },
+        "503": { "title": "Under Maintenance", "desc": "The site is under maintenance. Please check back soon." }
+    },
+    "contact": {
+        "seoTitle": "About & Contact｜JWisdom",
+        "seoDesc": "Get in touch with JWisdom — software development, system integration, AI applications and digital transformation consulting. Leave your request and a consultant will get back to you soon.",
+        "ogDesc": "Get in touch with JWisdom — software development, system integration, AI applications and digital transformation consulting.",
+        "title": "About & Contact",
+        "lead": "Your technology partner for real-world business. Whether it's a brand-new system, an upgrade of an old one, or on-site integration, leave your request and our consultants will get back to you soon with a free assessment and recommendations.",
+        "infoTitle": "Contact Information",
+        "infoSubtitle": "Feel free to reach us through any of the channels below, or fill out the form on the right.",
+        "labelPhone": "Phone",
+        "labelFax": "Fax",
+        "labelAddress": "Address",
+        "hoursTitle": "Business Hours",
+        "hoursDefault": "Mon–Fri 09:00–18:00",
+        "lineJoin": "Add Official LINE",
+        "lineScan": "Scan the QR code on the left to add us as a friend and get the fastest reply.",
+        "formTitle": "Fill Out the Contact Form",
+        "formNote": "Fields marked * are required. We'll reply as soon as we receive your message.",
+        "fieldName": "Name *",
+        "fieldCompany": "Company / Organization",
+        "fieldPhone": "Phone",
+        "fieldSubject": "Subject",
+        "subjectPlaceholder": "e.g. I'd like to build a membership booking system",
+        "fieldMessage": "Your Request *",
+        "messagePlaceholder": "Briefly describe your needs, goals or the problem you want to solve…",
+        "submitting": "Sending…",
+        "submit": "Send Request",
+        "mapTitle": "Directions & Location"
+    },
+    "news": {
+        "empty": "No news yet.",
+        "source": "Source: ",
+        "backNews": "Back to News",
+        "backInsights": "Back to Insights",
+        "otherNews": "More News",
+        "otherInsights": "More Insights",
+        "crumbNews": "News",
+        "crumbInsights": "Insights"
+    },
+    "services": {
+        "label": "Services",
+        "ctaConsult": "Get a Free Consultation on This Service",
+        "others": "Other Services"
+    },
+    "works": {
+        "label": "Case Studies",
+        "gotoSite": "Visit Site",
+        "back": "Back to Case Studies",
+        "others": "Other Case Studies"
     }
 }

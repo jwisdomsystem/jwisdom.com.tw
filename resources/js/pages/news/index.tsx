@@ -1,4 +1,5 @@
 import { Head, Link } from '@inertiajs/react';
+import { useTranslation } from 'react-i18next';
 import SiteLayout from '@/layouts/site-layout';
 
 type NewsItem = { title: string; slug: string; category?: string; type?: string; excerpt?: string; cover?: string; cover_gradient?: string; published_at?: string };
@@ -9,6 +10,8 @@ type Paginated = {
 type Meta = { eyebrow: string; title: string; desc: string; path: string };
 
 export default function NewsIndex({ news, meta }: { news: Paginated; meta: Meta }) {
+    const { t } = useTranslation();
+    const brand = t('common.brand');
     const collectionLd = {
         '@context': 'https://schema.org',
         '@type': 'CollectionPage',
@@ -31,20 +34,20 @@ export default function NewsIndex({ news, meta }: { news: Paginated; meta: Meta 
         '@context': 'https://schema.org',
         '@type': 'BreadcrumbList',
         itemListElement: [
-            { '@type': 'ListItem', position: 1, name: '首頁', item: 'https://www.jwisdom.com.tw/' },
+            { '@type': 'ListItem', position: 1, name: t('common.home'), item: 'https://www.jwisdom.com.tw/' },
             { '@type': 'ListItem', position: 2, name: meta.title, item: `https://www.jwisdom.com.tw${meta.path}` },
         ],
     };
     return (
         <SiteLayout>
-            <Head title={`${meta.title}｜宸揚資科 JWisdom`}>
+            <Head title={`${meta.title}｜${brand}`}>
                 <meta name="description" content={meta.desc} />
                 <link rel="canonical" href={`https://www.jwisdom.com.tw${meta.path}`} />
                 <meta property="og:type" content="website" />
-                <meta property="og:title" content={`${meta.title}｜宸揚資科 JWisdom`} />
+                <meta property="og:title" content={`${meta.title}｜${brand}`} />
                 <meta property="og:description" content={meta.desc} />
                 <meta property="og:url" content={`https://www.jwisdom.com.tw${meta.path}`} />
-                <meta property="og:site_name" content="宸揚資科 JWisdom" />
+                <meta property="og:site_name" content={brand} />
                 <meta property="og:image" content="https://www.jwisdom.com.tw/images/jwisdom-logo.png" />
                 <meta name="twitter:card" content="summary_large_image" />
                 <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(collectionLd) }} />
@@ -62,7 +65,7 @@ export default function NewsIndex({ news, meta }: { news: Paginated; meta: Meta 
             <section className="bg-white py-16">
                 <div className="mx-auto max-w-7xl px-6">
                     {news.data.length === 0 ? (
-                        <p className="text-center text-slate-500">目前尚無消息。</p>
+                        <p className="text-center text-slate-500">{t('news.empty')}</p>
                     ) : (
                         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
                             {news.data.map((n) => (

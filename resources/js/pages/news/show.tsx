@@ -1,4 +1,5 @@
 import { Head, Link } from '@inertiajs/react';
+import { useTranslation } from 'react-i18next';
 import SiteLayout from '@/layouts/site-layout';
 
 type Item = {
@@ -14,20 +15,22 @@ function fmt(d?: string) {
 }
 
 export default function NewsShow({ item, related }: { item: Item; related: Related[] }) {
+    const { t } = useTranslation();
+    const brand = t('common.brand');
     const desc = item.meta_description ?? item.excerpt ?? item.title;
     const ogImg = item.cover
         ? (item.cover.startsWith('http') ? item.cover : `https://www.jwisdom.com.tw${item.cover}`)
         : 'https://www.jwisdom.com.tw/images/jwisdom-logo.png';
     return (
         <SiteLayout>
-            <Head title={`${item.meta_title ?? item.title}｜宸揚資科 JWisdom`}>
+            <Head title={`${item.meta_title ?? item.title}｜${brand}`}>
                 <meta name="description" content={desc} />
                 <link rel="canonical" href={`https://www.jwisdom.com.tw/news/${item.slug}`} />
                 <meta property="og:type" content="article" />
                 <meta property="og:title" content={item.title} />
                 <meta property="og:description" content={desc} />
                 <meta property="og:url" content={`https://www.jwisdom.com.tw/news/${item.slug}`} />
-                <meta property="og:site_name" content="宸揚資科 JWisdom" />
+                <meta property="og:site_name" content={brand} />
                 <meta property="og:image" content={ogImg} />
                 <meta name="twitter:card" content="summary_large_image" />
                 <meta name="twitter:title" content={item.title} />
@@ -45,7 +48,7 @@ export default function NewsShow({ item, related }: { item: Item; related: Relat
                             image: item.cover ? [item.cover] : undefined,
                             publisher: {
                                 '@type': 'Organization',
-                                name: '宸揚資科 JWisdom',
+                                name: brand,
                                 logo: { '@type': 'ImageObject', url: 'https://www.jwisdom.com.tw/images/jwisdom-logo.png' },
                             },
                             mainEntityOfPage: `https://www.jwisdom.com.tw/news/${item.slug}`,
@@ -59,10 +62,10 @@ export default function NewsShow({ item, related }: { item: Item; related: Relat
                             '@context': 'https://schema.org',
                             '@type': 'BreadcrumbList',
                             itemListElement: [
-                                { '@type': 'ListItem', position: 1, name: '首頁', item: 'https://www.jwisdom.com.tw/' },
+                                { '@type': 'ListItem', position: 1, name: t('common.home'), item: 'https://www.jwisdom.com.tw/' },
                                 item.type === 'insight'
-                                    ? { '@type': 'ListItem', position: 2, name: '技術洞察', item: 'https://www.jwisdom.com.tw/insights' }
-                                    : { '@type': 'ListItem', position: 2, name: '最新消息', item: 'https://www.jwisdom.com.tw/news' },
+                                    ? { '@type': 'ListItem', position: 2, name: t('news.crumbInsights'), item: 'https://www.jwisdom.com.tw/insights' }
+                                    : { '@type': 'ListItem', position: 2, name: t('news.crumbNews'), item: 'https://www.jwisdom.com.tw/news' },
                                 { '@type': 'ListItem', position: 3, name: item.title, item: `https://www.jwisdom.com.tw/news/${item.slug}` },
                             ],
                         }),
@@ -93,13 +96,13 @@ export default function NewsShow({ item, related }: { item: Item; related: Relat
                     <div className="prose prose-slate max-w-none prose-a:text-sky-600" dangerouslySetInnerHTML={{ __html: item.body ?? '' }} />
                     {item.source_url && (
                         <p className="mt-8 text-sm text-slate-400">
-                            資料來源：
+                            {t('news.source')}
                             <a href={item.source_url} target="_blank" rel="noopener noreferrer" className="text-sky-600 hover:underline">{item.source_name ?? item.source_url}</a>
                         </p>
                     )}
                     <div className="mt-10 border-t border-slate-100 pt-6">
                         <Link href={item.type === 'insight' ? '/insights' : '/news'} className="font-semibold text-sky-600 hover:underline">
-                            ← 回{item.type === 'insight' ? '技術洞察' : '最新消息'}
+                            ← {item.type === 'insight' ? t('news.backInsights') : t('news.backNews')}
                         </Link>
                     </div>
                 </div>
@@ -108,7 +111,7 @@ export default function NewsShow({ item, related }: { item: Item; related: Relat
             {related.length > 0 && (
                 <section className="bg-slate-50 py-16">
                     <div className="mx-auto max-w-7xl px-6">
-                        <h2 className="mb-8 text-xl font-bold text-slate-900">{item.type === 'insight' ? '其他技術洞察' : '其他消息'}</h2>
+                        <h2 className="mb-8 text-xl font-bold text-slate-900">{item.type === 'insight' ? t('news.otherInsights') : t('news.otherNews')}</h2>
                         <div className="grid gap-6 sm:grid-cols-3">
                             {related.map((r) => (
                                 <Link key={r.slug} href={`/news/${r.slug}`} className="group block overflow-hidden rounded-2xl border border-slate-100 bg-white shadow-sm transition hover:-translate-y-1 hover:shadow-lg">

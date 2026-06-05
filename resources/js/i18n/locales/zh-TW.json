@@ -42,7 +42,11 @@
         "learnMore": "了解更多",
         "close": "關閉",
         "closeAnnouncement": "關閉公告",
-        "closeAd": "關閉廣告"
+        "closeAd": "關閉廣告",
+        "brand": "宸揚資科 JWisdom",
+        "home": "首頁",
+        "backHome": "回首頁",
+        "viewNews": "看最新消息"
     },
     "partners": {
         "subtitle": "運用全球頂尖技術生態系，為您的產品提供最強大的後盾"
@@ -136,5 +140,68 @@
                 { "title": "維運優化", "desc": "上線不是結束，持續監控、維護與優化，陪你把系統養好。" }
             ]
         }
+    },
+    "faq": {
+        "title": "常見問題",
+        "seoTitle": "常見問題 Q&A｜宸揚資科 JWisdom",
+        "seoDesc": "宸揚資科 JWisdom 常見問題：服務流程、報價合作、技術維運等說明。"
+    },
+    "errors": {
+        "generic": { "title": "發生錯誤", "desc": "請稍後再試。" },
+        "403": { "title": "沒有權限", "desc": "您沒有權限存取此頁面。" },
+        "404": { "title": "找不到頁面", "desc": "您要找的頁面不存在或已被移除。" },
+        "419": { "title": "連線逾時", "desc": "頁面已過期，請重新整理後再試。" },
+        "429": { "title": "請求過於頻繁", "desc": "請稍候片刻再試。" },
+        "500": { "title": "伺服器發生錯誤", "desc": "系統暫時出了點問題，我們正在處理。" },
+        "503": { "title": "服務維護中", "desc": "網站正在維護，請稍後再回來。" }
+    },
+    "contact": {
+        "seoTitle": "介紹與聯絡｜宸揚資科 JWisdom",
+        "seoDesc": "與宸揚資科 JWisdom 聯絡——軟體開發、系統整合、AI 應用與數位轉型諮詢，留下需求，顧問將盡快與您聯繫。",
+        "ogDesc": "與宸揚資科 JWisdom 聯絡——軟體開發、系統整合、AI 應用與數位轉型諮詢。",
+        "title": "介紹與聯絡",
+        "lead": "商業落地的技術夥伴。不論是全新系統、舊系統升級，還是場域整合，留下您的需求，我們的顧問會盡快與您聯繫，提供免費評估與建議。",
+        "infoTitle": "聯絡資訊",
+        "infoSubtitle": "歡迎透過以下方式與我們聯繫，或直接填寫右側表單。",
+        "labelPhone": "電話",
+        "labelFax": "傳真",
+        "labelAddress": "地址",
+        "hoursTitle": "服務時間",
+        "hoursDefault": "週一至週五 09:00–18:00",
+        "lineJoin": "加入官方 LINE",
+        "lineScan": "掃描左方 QR Code 立即加入好友，最快取得回覆。",
+        "formTitle": "填寫聯絡表單",
+        "formNote": "標示 * 為必填。我們會在收到後盡快回覆。",
+        "fieldName": "姓名 *",
+        "fieldCompany": "公司 / 單位",
+        "fieldPhone": "電話",
+        "fieldSubject": "主旨",
+        "subjectPlaceholder": "例如：想開發一套會員預約系統",
+        "fieldMessage": "需求內容 *",
+        "messagePlaceholder": "簡單描述您的需求、目標或想解決的問題⋯",
+        "submitting": "送出中⋯",
+        "submit": "送出需求",
+        "mapTitle": "交通與位置"
+    },
+    "news": {
+        "empty": "目前尚無消息。",
+        "source": "資料來源：",
+        "backNews": "回最新消息",
+        "backInsights": "回技術洞察",
+        "otherNews": "其他消息",
+        "otherInsights": "其他技術洞察",
+        "crumbNews": "最新消息",
+        "crumbInsights": "技術洞察"
+    },
+    "services": {
+        "label": "服務項目",
+        "ctaConsult": "免費諮詢這項服務",
+        "others": "其他服務"
+    },
+    "works": {
+        "label": "精選實例",
+        "gotoSite": "前往網站",
+        "back": "回精選實例",
+        "others": "其他案例"
     }
 }

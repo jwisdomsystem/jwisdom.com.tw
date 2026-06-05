@@ -1,5 +1,6 @@
 import { Head } from '@inertiajs/react';
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import SiteLayout from '@/layouts/site-layout';
 
 type FaqItem = { question: string; answer: string };
@@ -19,6 +20,7 @@ function Item({ q, a }: { q: string; a: string }) {
 }
 
 export default function FaqPage({ groups }: { groups: Group[] }) {
+    const { t } = useTranslation();
     const faqItems = groups.flatMap((g) => g.items).filter((f) => f.question && f.answer);
     const faqLd = {
         '@context': 'https://schema.org',
@@ -31,11 +33,11 @@ export default function FaqPage({ groups }: { groups: Group[] }) {
     };
     return (
         <SiteLayout>
-            <Head title="常見問題 Q&A｜宸揚資科 JWisdom">
-                <meta name="description" content="宸揚資科 JWisdom 常見問題：服務流程、報價合作、技術維運等說明。" />
+            <Head title={t('faq.seoTitle')}>
+                <meta name="description" content={t('faq.seoDesc')} />
                 <link rel="canonical" href="https://www.jwisdom.com.tw/faq" />
-                <meta property="og:title" content="常見問題 Q&A｜宸揚資科 JWisdom" />
-                <meta property="og:description" content="宸揚資科 JWisdom 常見問題：服務流程、報價合作、技術維運等說明。" />
+                <meta property="og:title" content={t('faq.seoTitle')} />
+                <meta property="og:description" content={t('faq.seoDesc')} />
                 <meta property="og:url" content="https://www.jwisdom.com.tw/faq" />
                 <meta property="og:image" content="https://www.jwisdom.com.tw/images/jwisdom-logo.png" />
                 <meta name="twitter:card" content="summary_large_image" />
@@ -47,7 +49,7 @@ export default function FaqPage({ groups }: { groups: Group[] }) {
             <section className="bg-slate-900 py-20 text-white">
                 <div className="mx-auto max-w-7xl px-6">
                     <span className="text-sm font-bold uppercase tracking-wider text-sky-400">FAQ</span>
-                    <h1 className="mt-3 text-4xl font-extrabold md:text-5xl">常見問題</h1>
+                    <h1 className="mt-3 text-4xl font-extrabold md:text-5xl">{t('faq.title')}</h1>
                 </div>
             </section>
 
