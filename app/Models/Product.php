@@ -2,12 +2,18 @@
 
 namespace App\Models;
 
+use App\Models\Concerns\HasTranslations;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 
 class Product extends Model
 {
+    use HasTranslations;
+
+    protected array $translatable = ['name', 'tag', 'description', 'features'];
+
     protected $fillable = [
+        'translations',
         'name', 'en', 'tag', 'description', 'url', 'features', 'accent', 'sort', 'is_active',
     ];
 

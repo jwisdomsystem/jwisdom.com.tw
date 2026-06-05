@@ -2,12 +2,17 @@
 
 namespace App\Models;
 
+use App\Models\Concerns\HasTranslations;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 
 class Faq extends Model
 {
-    protected $fillable = ['group', 'question', 'answer', 'sort', 'is_published'];
+    use HasTranslations;
+
+    protected array $translatable = ['group', 'question', 'answer'];
+
+    protected $fillable = ['translations', 'group', 'question', 'answer', 'sort', 'is_published'];
 
     protected $casts = ['is_published' => 'boolean'];
 

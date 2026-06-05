@@ -10,20 +10,24 @@ class NewsController extends Controller
 {
     public function index(): Response
     {
+        $en = app()->getLocale() === 'en';
+
         return $this->list('news', [
             'eyebrow' => 'News',
-            'title' => '最新消息',
-            'desc' => '公司動態、技術分享與合作案例。',
+            'title' => $en ? 'News' : '最新消息',
+            'desc' => $en ? 'Company updates, technical insights and collaboration stories.' : '公司動態、技術分享與合作案例。',
             'path' => '/news',
         ]);
     }
 
     public function insights(): Response
     {
+        $en = app()->getLocale() === 'en';
+
         return $this->list('insight', [
             'eyebrow' => 'Insights',
-            'title' => '技術洞察',
-            'desc' => '資安、系統架構、AI 等技術趨勢與實戰觀點。',
+            'title' => $en ? 'Insights' : '技術洞察',
+            'desc' => $en ? 'Technical trends and hands-on perspectives on security, system architecture, AI and more.' : '資安、系統架構、AI 等技術趨勢與實戰觀點。',
             'path' => '/insights',
         ]);
     }
@@ -55,7 +59,7 @@ class NewsController extends Controller
             'item' => $news,
             'related' => News::published()->where('id', '!=', $news->id)
                 ->latest('published_at')->take(3)
-                ->get(['title', 'slug', 'category', 'cover', 'cover_gradient', 'published_at']),
+                ->get(['translations', 'title', 'slug', 'category', 'cover', 'cover_gradient', 'published_at']),
         ]);
     }
 }

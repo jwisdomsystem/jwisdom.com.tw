@@ -2,14 +2,22 @@
 
 namespace App\Models;
 
+use App\Models\Concerns\HasTranslations;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 
 class News extends Model
 {
+    use HasTranslations;
+
     protected $table = 'news';
 
+    protected array $translatable = [
+        'title', 'category', 'excerpt', 'body', 'source_name', 'meta_title', 'meta_description',
+    ];
+
     protected $fillable = [
+        'translations',
         'title', 'slug', 'category', 'type', 'excerpt', 'body', 'cover',
         'cover_gradient', 'source_name', 'source_url', 'is_published',
         'published_at', 'meta_title', 'meta_description',

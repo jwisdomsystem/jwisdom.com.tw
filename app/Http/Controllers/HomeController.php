@@ -16,7 +16,7 @@ class HomeController extends Controller
             'services' => Service::published()->orderBy('sort')->get(),
             'works' => Work::published()->orderBy('sort')->get(),
             'insights' => News::published()->where('type', 'insight')->latest('published_at')->take(3)
-                ->get(['title', 'slug', 'category', 'excerpt', 'cover', 'published_at'])
+                ->get(['translations', 'title', 'slug', 'category', 'excerpt', 'cover', 'published_at'])
                 ->map(fn ($n) => [
                     'title' => $n->title, 'slug' => $n->slug, 'category' => $n->category,
                     'excerpt' => $n->excerpt, 'cover' => $n->cover,

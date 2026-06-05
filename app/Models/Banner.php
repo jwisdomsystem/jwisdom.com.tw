@@ -2,12 +2,18 @@
 
 namespace App\Models;
 
+use App\Models\Concerns\HasTranslations;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 
 class Banner extends Model
 {
+    use HasTranslations;
+
+    protected array $translatable = ['title', 'subtitle', 'body', 'cta_label'];
+
     protected $fillable = [
+        'translations',
         'zone', 'title', 'subtitle', 'body', 'image', 'url',
         'cta_label', 'accent', 'sort', 'is_active', 'starts_at', 'ends_at',
     ];

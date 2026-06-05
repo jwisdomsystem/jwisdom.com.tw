@@ -58,13 +58,13 @@ class HandleInertiaRequests extends Middleware
             ],
             'settings' => fn () => Setting::pluck('value', 'key'),
             'banners' => fn () => Banner::active()->orderBy('sort')->get([
-                'zone', 'title', 'subtitle', 'body', 'image', 'url', 'cta_label', 'accent',
+                'translations', 'zone', 'title', 'subtitle', 'body', 'image', 'url', 'cta_label', 'accent',
             ])->groupBy('zone'),
             // 全站共享（首頁產品區 + footer 用）
             'siteProducts' => fn () => Product::active()->orderBy('sort')->get([
-                'name', 'en', 'tag', 'description', 'url', 'features', 'accent',
+                'translations', 'name', 'en', 'tag', 'description', 'url', 'features', 'accent',
             ]),
-            'footerServices' => fn () => Service::where('is_published', true)->orderBy('sort')->take(6)->get(['title', 'slug']),
+            'footerServices' => fn () => Service::where('is_published', true)->orderBy('sort')->take(6)->get(['translations', 'title', 'slug']),
             'sitePartners' => fn () => Partner::active()->orderBy('sort')->orderBy('id')->get(['name', 'logo', 'url']),
             'ziggy' => [
                 ...(new Ziggy)->toArray(),

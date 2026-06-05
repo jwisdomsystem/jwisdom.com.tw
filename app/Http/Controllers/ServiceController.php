@@ -15,7 +15,7 @@ class ServiceController extends Controller
         return Inertia::render('services/show', [
             'service' => $service,
             'others' => Service::published()->where('id', '!=', $service->id)
-                ->orderBy('sort')->get(['title', 'slug', 'icon_bg', 'icon_text']),
+                ->orderBy('sort')->get(['translations', 'title', 'slug', 'icon_bg', 'icon_text']),
         ]);
     }
 }
