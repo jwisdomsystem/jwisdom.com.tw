@@ -1,0 +1,50 @@
+{
+    "nav": {
+        "services": "Services",
+        "products": "Products",
+        "works": "Case Studies",
+        "why": "About Us",
+        "news": "News",
+        "insights": "Insights",
+        "contact": "About & Contact"
+    },
+    "header": {
+        "start": "Get Started",
+        "chooseProduct": "Choose a product to begin",
+        "contactConsultant": "Talk to a Consultant",
+        "menu": "Menu"
+    },
+    "startMenu": {
+        "shopName": "IoT Shop",
+        "shopDesc": "Maker / IoT electronic parts",
+        "chataiName": "ChatAI Realistic CS",
+        "chataiDesc": "AI multi-channel customer service",
+        "autogrowthName": "AutoGrowth",
+        "autogrowthDesc": "AI-powered customer acquisition"
+    },
+    "footer": {
+        "services": "Services",
+        "products": "Products",
+        "company": "Company",
+        "companyIntro": "About the Company",
+        "works": "Case Studies",
+        "news": "News",
+        "insights": "Insights",
+        "faq": "FAQ",
+        "contactUs": "Contact Us",
+        "noProducts": "No products configured yet",
+        "terms": "Terms of Use",
+        "privacy": "Privacy Policy",
+        "tagline": "Your technology partner for real-world business. From system development and web apps to on-site integration, we help organizations turn ideas into stable, working systems.",
+        "copyright": "© {{year}} JWisdom. All rights reserved."
+    },
+    "common": {
+        "learnMore": "Learn more",
+        "close": "Close",
+        "closeAnnouncement": "Close announcement",
+        "closeAd": "Close ad"
+    },
+    "partners": {
+        "subtitle": "Powered by the world's leading technology ecosystem to give your product the strongest backing"
+    }
+}

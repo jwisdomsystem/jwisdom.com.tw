@@ -21,13 +21,33 @@ class HandleInertiaRequests extends Middleware
         return parent::version($request);
     }
 
+    /**
+     * Supported front-end locales. Keep in sync with resources/js/i18n/index.ts.
+     */
+    public const SUPPORTED_LOCALES = ['zh-TW', 'en'];
+
+    public const DEFAULT_LOCALE = 'zh-TW';
+
+    public function resolveLocale(Request $request): string
+    {
+        $locale = $request->cookie('locale');
+
+        return in_array($locale, self::SUPPORTED_LOCALES, true)
+            ? $locale
+            : self::DEFAULT_LOCALE;
+    }
+
     public function share(Request $request): array
     {
         [$message, $author] = str(Inspiring::quotes()->random())->explode('-');
 
+        $locale = $this->resolveLocale($request);
+        app()->setLocale($locale);
+
         return [
             ...parent::share($request),
             'name' => config('app.name'),
+            'locale' => $locale,
             'quote' => ['message' => trim($message), 'author' => trim($author)],
             'auth' => [
                 'user' => $request->user(),

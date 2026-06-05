@@ -1,0 +1,50 @@
+{
+    "nav": {
+        "services": "服務項目",
+        "products": "我們的產品",
+        "works": "精選實例",
+        "why": "關於我們",
+        "news": "最新消息",
+        "insights": "技術洞察",
+        "contact": "介紹與聯絡"
+    },
+    "header": {
+        "start": "開始使用",
+        "chooseProduct": "選擇產品開始",
+        "contactConsultant": "聯絡顧問",
+        "menu": "選單"
+    },
+    "startMenu": {
+        "shopName": "IoT 電商商城",
+        "shopDesc": "創客 / IoT 電子零件",
+        "chataiName": "ChatAI 擬真客服",
+        "chataiDesc": "AI 多渠道擬真客服",
+        "autogrowthName": "AutoGrowth 智慧攬客",
+        "autogrowthDesc": "AI 自動攬客成長"
+    },
+    "footer": {
+        "services": "服務項目",
+        "products": "我們的產品",
+        "company": "公司",
+        "companyIntro": "公司介紹",
+        "works": "精選實例",
+        "news": "最新消息",
+        "insights": "技術洞察",
+        "faq": "常見問題",
+        "contactUs": "聯絡我們",
+        "noProducts": "尚未設定產品",
+        "terms": "使用者條款",
+        "privacy": "隱私權保護",
+        "tagline": "商業落地的技術夥伴。從系統開發、網頁 App 到場域整合，協助組織把想法變成穩定運作的系統。",
+        "copyright": "© {{year}} 宸揚資科 JWisdom. All rights reserved."
+    },
+    "common": {
+        "learnMore": "了解更多",
+        "close": "關閉",
+        "closeAnnouncement": "關閉公告",
+        "closeAd": "關閉廣告"
+    },
+    "partners": {
+        "subtitle": "運用全球頂尖技術生態系，為您的產品提供最強大的後盾"
+    }
+}

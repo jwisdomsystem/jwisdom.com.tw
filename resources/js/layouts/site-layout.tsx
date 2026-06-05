@@ -1,7 +1,9 @@
 import { Link, usePage } from '@inertiajs/react';
 import { MapPin, Phone, Printer, Mail } from 'lucide-react';
 import { type PropsWithChildren, useEffect, useRef, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { track, trackOutbound } from '@/lib/analytics';
+import LanguageSwitcher from '@/components/language-switcher';
 
 type Banner = { title?: string; subtitle?: string; body?: string; url?: string; cta_label?: string };
 
@@ -11,22 +13,22 @@ function useBanner(zone: string): Banner | undefined {
 }
 
 const navItems = [
-    { label: '服務項目', href: '/#services' },
-    { label: '我們的產品', href: '/#products' },
-    { label: '精選實例', href: '/#works' },
-    { label: '關於我們', href: '/#why' },
-    { label: '最新消息', href: '/news' },
-    { label: '技術洞察', href: '/insights' },
-    { label: '介紹與聯絡', href: '/contact' },
-];
-
-const startMenuItems = [
-    { name: 'IoT 電商商城', desc: '創客 / IoT 電子零件', url: 'https://shop.jwisdom.com.tw' },
-    { name: 'ChatAI 擬真客服', desc: 'AI 多渠道擬真客服', url: 'https://tw.chat-ai.app' },
-    { name: 'AutoGrowth 智慧攬客', desc: 'AI 自動攬客成長', url: 'https://tw.auto-growth.app' },
+    { key: 'services', href: '/#services' },
+    { key: 'products', href: '/#products' },
+    { key: 'works', href: '/#works' },
+    { key: 'why', href: '/#why' },
+    { key: 'news', href: '/news' },
+    { key: 'insights', href: '/insights' },
+    { key: 'contact', href: '/contact' },
 ];
 
 function StartMenu() {
+    const { t } = useTranslation();
+    const startMenuItems = [
+        { name: t('startMenu.shopName'), desc: t('startMenu.shopDesc'), url: 'https://shop.jwisdom.com.tw' },
+        { name: t('startMenu.chataiName'), desc: t('startMenu.chataiDesc'), url: 'https://tw.chat-ai.app' },
+        { name: t('startMenu.autogrowthName'), desc: t('startMenu.autogrowthDesc'), url: 'https://tw.auto-growth.app' },
+    ];
     const [open, setOpen] = useState(false);
     const ref = useRef<HTMLDivElement>(null);
     useEffect(() => {
@@ -45,14 +47,14 @@ function StartMenu() {
                 onClick={() => setOpen((v) => !v)}
                 className="inline-flex items-center gap-1.5 rounded-full bg-sky-400 px-5 py-2.5 text-sm font-bold text-slate-900 transition hover:brightness-95"
             >
-                開始使用
+                {t('header.start')}
                 <svg viewBox="0 0 24 24" className={`h-4 w-4 transition-transform ${open ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" strokeWidth={2.5}>
                     <path d="m6 9 6 6 6-6" />
                 </svg>
             </button>
             {open && (
                 <div className="absolute right-0 z-50 mt-2 w-72 overflow-hidden rounded-2xl border border-slate-100 bg-white p-2 shadow-xl">
-                    <div className="px-3 py-2 text-xs font-semibold uppercase tracking-wider text-slate-400">選擇產品開始</div>
+                    <div className="px-3 py-2 text-xs font-semibold uppercase tracking-wider text-slate-400">{t('header.chooseProduct')}</div>
                     {startMenuItems.map((m) => (
                         <a
                             key={m.name}
@@ -72,10 +74,10 @@ function StartMenu() {
                     <div className="my-1 border-t border-slate-100" />
                     <a
                         href="/contact"
-                        onClick={() => { track('cta_clicked', { button_text: '聯絡顧問', location: 'header_start_menu' }); setOpen(false); }}
+                        onClick={() => { track('cta_clicked', { button_text: 'contact_consultant', location: 'header_start_menu' }); setOpen(false); }}
                         className="flex items-center justify-between rounded-xl px-3 py-2.5 text-sm font-bold text-slate-700 transition hover:bg-slate-50"
                     >
-                        聯絡顧問 <span className="text-sky-500">→</span>
+                        {t('header.contactConsultant')} <span className="text-sky-500">→</span>
                     </a>
                 </div>
             )}
@@ -92,6 +94,7 @@ function Logo() {
 }
 
 function Header() {
+    const { t } = useTranslation();
     const [open, setOpen] = useState(false);
 
     return (
@@ -101,17 +104,18 @@ function Header() {
                 <nav className="hidden items-center gap-8 text-sm font-medium text-slate-600 lg:flex">
                     {navItems.map((item) => (
                         <a key={item.href} href={item.href} className="transition hover:text-slate-900">
-                            {item.label}
+                            {t(`nav.${item.key}`)}
                         </a>
                     ))}
                 </nav>
                 <div className="flex items-center gap-3">
+                    <LanguageSwitcher className="hidden sm:inline-flex" />
                     <StartMenu />
                     <button
                         type="button"
                         onClick={() => setOpen((v) => !v)}
                         className="lg:hidden"
-                        aria-label="選單"
+                        aria-label={t('header.menu')}
                     >
                         <svg viewBox="0 0 24 24" className="h-6 w-6 text-slate-700" fill="none" stroke="currentColor" strokeWidth={2}>
                             <path d="M3 6h18M3 12h18M3 18h18" />
@@ -128,9 +132,12 @@ function Header() {
                             onClick={() => setOpen(false)}
                             className="block py-2 text-sm font-medium text-slate-700"
                         >
-                            {item.label}
+                            {t(`nav.${item.key}`)}
                         </a>
                     ))}
+                    <div className="mt-3 border-t border-slate-100 pt-3">
+                        <LanguageSwitcher />
+                    </div>
                 </nav>
             )}
         </header>
@@ -197,6 +204,7 @@ function SocialLinks() {
 }
 
 function Footer() {
+    const { t } = useTranslation();
     const props = usePage().props as {
         settings?: Record<string, string>;
         siteProducts?: { name: string; url?: string }[];
@@ -207,8 +215,10 @@ function Footer() {
     const phone = settings.contact_phone || '06-2340161';
     const fax = settings.contact_fax || '';
     const address = settings.contact_address || '臺南市東區東門路二段297號5F';
-    const tagline = settings.footer_tagline || '商業落地的技術夥伴。從系統開發、網頁 App 到場域整合，協助組織把想法變成穩定運作的系統。';
-    const copyright = (settings.footer_copyright || '© {year} 宸揚資科 JWisdom. All rights reserved.').replace('{year}', String(new Date().getFullYear()));
+    const tagline = settings.footer_tagline || t('footer.tagline');
+    const copyright = (settings.footer_copyright
+        ? settings.footer_copyright.replace('{year}', String(new Date().getFullYear()))
+        : t('footer.copyright', { year: new Date().getFullYear() }));
     const products = props.siteProducts ?? [];
     const services = props.footerServices ?? [];
     return (
@@ -221,33 +231,33 @@ function Footer() {
                     <p className="max-w-xs text-sm leading-relaxed text-slate-400">{tagline}</p>
                 </div>
                 <div className="md:col-span-2">
-                    <h4 className="mb-4 text-sm font-semibold text-white">服務項目</h4>
+                    <h4 className="mb-4 text-sm font-semibold text-white">{t('footer.services')}</h4>
                     <ul className="space-y-2.5 text-sm">
                         {services.length > 0 ? services.map((s) => (
                             <li key={s.slug}><a href={`/services/${s.slug}`} className="hover:text-sky-400">{s.title}</a></li>
-                        )) : <li><a href="/#services" className="hover:text-sky-400">服務項目</a></li>}
+                        )) : <li><a href="/#services" className="hover:text-sky-400">{t('footer.services')}</a></li>}
                     </ul>
                 </div>
                 <div className="md:col-span-2">
-                    <h4 className="mb-4 text-sm font-semibold text-white">我們的產品</h4>
+                    <h4 className="mb-4 text-sm font-semibold text-white">{t('footer.products')}</h4>
                     <ul className="space-y-2.5 text-sm">
                         {products.length > 0 ? products.map((p) => (
                             <li key={p.name}><a href={p.url || '#'} target="_blank" rel="noopener noreferrer" onClick={() => p.url && trackOutbound(p.name, p.url, 'footer_products')} className="hover:text-sky-400">{p.name}</a></li>
-                        )) : <li className="text-slate-500">尚未設定產品</li>}
+                        )) : <li className="text-slate-500">{t('footer.noProducts')}</li>}
                     </ul>
                 </div>
                 <div className="md:col-span-2">
-                    <h4 className="mb-4 text-sm font-semibold text-white">公司</h4>
+                    <h4 className="mb-4 text-sm font-semibold text-white">{t('footer.company')}</h4>
                     <ul className="space-y-2.5 text-sm">
-                        <li><a href="/about" className="hover:text-sky-400">公司介紹</a></li>
-                        <li><a href="/#works" className="hover:text-sky-400">精選實例</a></li>
-                        <li><a href="/news" className="hover:text-sky-400">最新消息</a></li>
-                        <li><a href="/insights" className="hover:text-sky-400">技術洞察</a></li>
-                        <li><a href="/faq" className="hover:text-sky-400">常見問題</a></li>
+                        <li><a href="/about" className="hover:text-sky-400">{t('footer.companyIntro')}</a></li>
+                        <li><a href="/#works" className="hover:text-sky-400">{t('footer.works')}</a></li>
+                        <li><a href="/news" className="hover:text-sky-400">{t('footer.news')}</a></li>
+                        <li><a href="/insights" className="hover:text-sky-400">{t('footer.insights')}</a></li>
+                        <li><a href="/faq" className="hover:text-sky-400">{t('footer.faq')}</a></li>
                     </ul>
                 </div>
                 <div className="col-span-2 md:col-span-4">
-                    <h4 className="mb-4 text-sm font-semibold text-white">聯絡我們</h4>
+                    <h4 className="mb-4 text-sm font-semibold text-white">{t('footer.contactUs')}</h4>
                     <ul className="space-y-3 text-sm">
                         <li className="flex items-start gap-2.5">
                             <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-sky-400" />
@@ -275,8 +285,8 @@ function Footer() {
                     <span className="order-3 sm:order-1">{copyright}</span>
                     <SocialLinks />
                     <div className="order-2 flex gap-5 sm:order-3">
-                        <a href="/terms" className="hover:text-sky-400">使用者條款</a>
-                        <a href="/privacy" className="hover:text-sky-400">隱私權保護</a>
+                        <a href="/terms" className="hover:text-sky-400">{t('footer.terms')}</a>
+                        <a href="/privacy" className="hover:text-sky-400">{t('footer.privacy')}</a>
                     </div>
                 </div>
             </div>
@@ -285,6 +295,7 @@ function Footer() {
 }
 
 function AnnouncementBar() {
+    const { t } = useTranslation();
     const [show, setShow] = useState(true);
     const banner = useBanner('announcement');
     if (!show || !banner) return null;
@@ -296,7 +307,7 @@ function AnnouncementBar() {
                 <span className="text-slate-200">{banner.body}</span>
                 {banner.url && (
                     <a href={banner.url} {...(external ? { target: '_blank', rel: 'noopener noreferrer' } : {})} className="font-semibold text-sky-400 hover:underline">
-                        {banner.cta_label ?? '了解更多'} →
+                        {banner.cta_label ?? t('common.learnMore')} →
                     </a>
                 )}
             </div>
@@ -304,7 +315,7 @@ function AnnouncementBar() {
                 type="button"
                 onClick={() => setShow(false)}
                 className="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 transition hover:text-white"
-                aria-label="關閉公告"
+                aria-label={t('common.closeAnnouncement')}
             >
                 ✕
             </button>
@@ -322,6 +333,7 @@ const defaultPartners = [
 ];
 
 function PartnersStrip() {
+    const { t } = useTranslation();
     const shared = (usePage().props as { sitePartners?: { name: string; logo?: string; url?: string }[] }).sitePartners;
     const partners = (shared && shared.length)
         ? shared.map((p) => ({ name: p.name, src: p.logo || '', url: p.url }))
@@ -343,7 +355,7 @@ function PartnersStrip() {
         <section className="border-t border-slate-100 bg-white py-14">
             <div className="mx-auto max-w-7xl px-6 text-center">
                 <p className="mb-2 text-xs font-bold uppercase tracking-[0.2em] text-slate-400">Strategic Technology Partners</p>
-                <p className="mb-10 text-sm text-slate-500">運用全球頂尖技術生態系，為您的產品提供最強大的後盾</p>
+                <p className="mb-10 text-sm text-slate-500">{t('partners.subtitle')}</p>
             </div>
             {useMarquee ? (
                 <div className="group relative overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_8%,black_92%,transparent)]">
@@ -362,6 +374,7 @@ function PartnersStrip() {
 }
 
 function FloatingAd() {
+    const { t } = useTranslation();
     const [show, setShow] = useState(false);
     const banner = useBanner('floating');
     useEffect(() => {
@@ -377,7 +390,7 @@ function FloatingAd() {
                     type="button"
                     onClick={() => setShow(false)}
                     className="absolute right-3 top-3 text-slate-400 transition hover:text-slate-700"
-                    aria-label="關閉廣告"
+                    aria-label={t('common.closeAd')}
                 >
                     ✕
                 </button>
@@ -391,7 +404,7 @@ function FloatingAd() {
                         onClick={() => setShow(false)}
                         className="mt-3 inline-flex w-full items-center justify-center gap-1.5 rounded-full bg-slate-900 px-4 py-2.5 text-sm font-bold text-white transition hover:bg-slate-800"
                     >
-                        {banner.cta_label ?? '了解更多'} <span>→</span>
+                        {banner.cta_label ?? t('common.learnMore')} <span>→</span>
                     </a>
                 )}
             </div>

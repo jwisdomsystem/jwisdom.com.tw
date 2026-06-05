@@ -13,6 +13,9 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware) {
+        // The `locale` cookie is set by the front-end language switcher in plain
+        // JS, so it must not be encrypted/decrypted by Laravel.
+        $middleware->encryptCookies(except: ['locale']);
         $middleware->web(append: [
             HandleInertiaRequests::class,
             AddLinkHeadersForPreloadedAssets::class,
