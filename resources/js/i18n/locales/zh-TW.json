@@ -51,6 +51,13 @@
     "partners": {
         "subtitle": "運用全球頂尖技術生態系，為您的產品提供最強大的後盾"
     },
+    "chat": {
+        "title": "線上諮詢",
+        "welcome": "您好！需要宸揚資科為您服務什麼？",
+        "messengerSub": "Facebook Messenger",
+        "lineSub": "透過 LINE 與我們聯繫",
+        "aria": "線上諮詢"
+    },
     "home": {
         "hero": {
             "badge": "商業落地的技術夥伴",

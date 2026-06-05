@@ -51,6 +51,13 @@
     "partners": {
         "subtitle": "Backed by the world's leading technology partners."
     },
+    "chat": {
+        "title": "Chat with Us",
+        "welcome": "Hi! How can JWisdom help you today?",
+        "messengerSub": "Facebook Messenger",
+        "lineSub": "Chat with us on LINE",
+        "aria": "Chat with us"
+    },
     "home": {
         "hero": {
             "badge": "Your technology partner for real-world business",
