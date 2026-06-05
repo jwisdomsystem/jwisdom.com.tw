@@ -1,8 +1,18 @@
 import { Head, usePage } from '@inertiajs/react';
 import { type ReactNode, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { Sparkles, Scissors, Palette, Stethoscope, Globe, X, type LucideIcon } from 'lucide-react';
 import SiteLayout from '@/layouts/site-layout';
-import { track } from '@/lib/analytics';
+import { track, trackOutbound } from '@/lib/analytics';
+
+// ChatAI 擬真客服 — 官方網站 + 4 行業 LINE live demo
+const CHATAI_APP_URL = 'https://tw.chat-ai.app';
+const CHATAI_DEMOS: { key: string; zh: string; en: string; line: string; Icon: LucideIcon; accent: string }[] = [
+    { key: 'spa', zh: '美容 SPA', en: 'Beauty Spa', line: 'https://line.me/R/ti/p/@307gwntc', Icon: Sparkles, accent: 'text-rose-500 bg-rose-50' },
+    { key: 'hair', zh: '美髮沙龍', en: 'Hair Salon', line: 'https://line.me/R/ti/p/@052gypeu', Icon: Scissors, accent: 'text-amber-500 bg-amber-50' },
+    { key: 'nail', zh: '美甲美睫', en: 'Nail & Lash', line: 'https://line.me/R/ti/p/@619nolqm', Icon: Palette, accent: 'text-fuchsia-500 bg-fuchsia-50' },
+    { key: 'clinic', zh: '醫美診所', en: 'Aesthetic Clinic', line: 'https://line.me/R/ti/p/@126ypdbn', Icon: Stethoscope, accent: 'text-sky-500 bg-sky-50' },
+];
 
 type Service = { title: string; slug: string; summary: string; icon: string; icon_bg: string; icon_text: string };
 type Work = { name: string; slug: string; category: string; summary: string; year: string; cover_gradient: string; cover?: string };
@@ -91,7 +101,8 @@ function HeroCarousel({ slides }: { slides: Banner[] }) {
 }
 
 export default function Home({ services, works, insights = [] }: { services: Service[]; works: Work[]; insights?: Insight[] }) {
-    const { t } = useTranslation();
+    const { t, i18n } = useTranslation();
+    const [chatModal, setChatModal] = useState(false);
     const { banners, settings, siteProducts } = usePage().props as { banners: Record<string, Banner[]>; settings?: Record<string, string>; siteProducts?: { name: string; en?: string; tag?: string; description?: string; url?: string; features?: string[]; accent?: string }[] };
     const carousel = banners?.carousel ?? [];
     const promo = banners?.promo?.[0];
@@ -321,8 +332,17 @@ export default function Home({ services, works, insights = [] }: { services: Ser
                         <p className="mt-4 leading-relaxed text-slate-500">{t('home.products.subtitle')}</p>
                     </div>
                     <div className="grid gap-6 md:grid-cols-3">
-                        {products.map((p, i) => (
-                            <a key={p.name} href={p.url} target="_blank" rel="noopener noreferrer" className={`reveal d${i + 1} group flex flex-col rounded-2xl border border-slate-100 bg-white p-7 shadow-sm transition duration-300 hover:-translate-y-1.5 hover:shadow-xl`}>
+                        {products.map((p, i) => {
+                            const isChatAI = (p.url ?? '').includes('chat-ai');
+                            return (
+                            <a
+                                key={p.name}
+                                href={p.url}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                onClick={isChatAI ? (e) => { e.preventDefault(); setChatModal(true); } : undefined}
+                                className={`reveal d${i + 1} group flex flex-col rounded-2xl border border-slate-100 bg-white p-7 shadow-sm transition duration-300 hover:-translate-y-1.5 hover:shadow-xl`}
+                            >
                                 <div className={`mb-5 h-1.5 w-12 rounded-full bg-gradient-to-r ${p.accent}`} />
                                 <div className="text-xs font-semibold uppercase tracking-wider text-slate-400">{p.tag}</div>
                                 <h3 className="mt-2 text-xl font-bold text-slate-900">{p.name}</h3>
@@ -335,7 +355,8 @@ export default function Home({ services, works, insights = [] }: { services: Ser
                                 </ul>
                                 <span className="mt-auto inline-flex items-center gap-1.5 pt-6 font-semibold text-sky-600 transition-all group-hover:gap-3">{t('home.products.gotoSite')} <span>→</span></span>
                             </a>
-                        ))}
+                            );
+                        })}
                     </div>
                 </div>
             </section>
@@ -485,6 +506,64 @@ export default function Home({ services, works, insights = [] }: { services: Ser
                     </div>
                 </div>
             </section>
+
+            {/* ChatAI 擬真客服 — 體驗選單 (官網 + 4 行業 LINE demo) */}
+            {chatModal && (
+                <div className="fixed inset-0 z-[60] flex items-center justify-center p-4" role="dialog" aria-modal="true">
+                    <div className="absolute inset-0 bg-slate-900/60 backdrop-blur-sm" onClick={() => setChatModal(false)} />
+                    <div className="relative w-full max-w-md overflow-hidden rounded-3xl bg-white shadow-2xl">
+                        <div className="flex items-start justify-between bg-gradient-to-r from-indigo-500 to-sky-500 px-6 py-5 text-white">
+                            <div>
+                                <div className="text-xs font-bold uppercase tracking-wider text-white/80">ChatAI · AI Realistic CS</div>
+                                <h3 className="mt-0.5 text-lg font-extrabold">{t('chatai.modalTitle')}</h3>
+                            </div>
+                            <button type="button" onClick={() => setChatModal(false)} aria-label={t('common.close')} className="shrink-0 rounded-full p-1 text-white/80 transition hover:bg-white/15 hover:text-white">
+                                <X className="h-5 w-5" />
+                            </button>
+                        </div>
+                        <div className="p-4">
+                            <a
+                                href={CHATAI_APP_URL}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                onClick={() => trackOutbound('ChatAI Official', CHATAI_APP_URL, 'chatai_modal')}
+                                className="flex items-center gap-3 rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 transition hover:border-sky-300 hover:bg-sky-50"
+                            >
+                                <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-slate-900 text-white"><Globe className="h-5 w-5" /></span>
+                                <span className="flex-1">
+                                    <span className="block text-sm font-bold text-slate-900">{t('chatai.officialSite')}</span>
+                                    <span className="block text-xs text-slate-400">tw.chat-ai.app</span>
+                                </span>
+                                <span className="text-sky-500">→</span>
+                            </a>
+
+                            <div className="my-3 flex items-center gap-3 text-xs font-semibold uppercase tracking-wider text-slate-400">
+                                <span className="h-px flex-1 bg-slate-100" />{t('chatai.demoDivider')}<span className="h-px flex-1 bg-slate-100" />
+                            </div>
+
+                            <div className="space-y-2">
+                                {CHATAI_DEMOS.map((d) => (
+                                    <a
+                                        key={d.key}
+                                        href={d.line}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        onClick={() => trackOutbound(`ChatAI Demo ${d.key}`, d.line, 'chatai_modal')}
+                                        className="flex items-center gap-3 rounded-xl border border-slate-200 px-4 py-2.5 transition hover:border-emerald-300 hover:bg-emerald-50"
+                                    >
+                                        <span className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-lg ${d.accent}`}><d.Icon className="h-5 w-5" /></span>
+                                        <span className="flex-1">
+                                            <span className="block text-sm font-bold text-slate-900">{i18n.language === 'en' ? d.en : d.zh}</span>
+                                            <span className="block text-xs text-slate-400">{t('chatai.tryLine')}</span>
+                                        </span>
+                                        <span className="text-[#06C755]">→</span>
+                                    </a>
+                                ))}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            )}
         </SiteLayout>
     );
 }

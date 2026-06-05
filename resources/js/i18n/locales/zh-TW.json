@@ -51,6 +51,12 @@
     "partners": {
         "subtitle": "運用全球頂尖技術生態系，為您的產品提供最強大的後盾"
     },
+    "chatai": {
+        "modalTitle": "選擇體驗方式",
+        "officialSite": "前往 ChatAI 官方網站",
+        "demoDivider": "或 體驗各行業 Demo",
+        "tryLine": "用 LINE 體驗"
+    },
     "chat": {
         "title": "線上諮詢",
         "welcome": "您好！需要宸揚資科為您服務什麼？",

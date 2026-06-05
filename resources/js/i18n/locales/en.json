@@ -51,6 +51,12 @@
     "partners": {
         "subtitle": "Backed by the world's leading technology partners."
     },
+    "chatai": {
+        "modalTitle": "Choose How to Try It",
+        "officialSite": "Go to the ChatAI Website",
+        "demoDivider": "or try an industry demo",
+        "tryLine": "Try on LINE"
+    },
     "chat": {
         "title": "Chat with Us",
         "welcome": "Hi! How can JWisdom help you today?",
