@@ -46,5 +46,95 @@
     },
     "partners": {
         "subtitle": "Powered by the world's leading technology ecosystem to give your product the strongest backing"
+    },
+    "home": {
+        "hero": {
+            "badge": "Your technology partner for real-world business",
+            "titlePre": "Turning complex technology",
+            "titleMid": "into ",
+            "titleHighlight": "systems that just work",
+            "lead": "Whether it's a government project, enterprise transformation, or O2O integration for physical spaces — we don't just write code, we know how to make systems run reliably in the real world.",
+            "ctaEval": "Evaluate Your Project",
+            "ctaCases": "View Case Studies",
+            "tags": ["System Architecture", "Enterprise Digital Transformation", "OMO Smart Spaces"]
+        },
+        "diagram": {
+            "client": "Client App",
+            "core": "Core System",
+            "field": "Field / Devices"
+        },
+        "services": {
+            "title": "End-to-End Digital Solutions",
+            "subtitle": "From system development to on-site integration, we provide one-stop technical services that help organizations turn ideas into stable, working systems.",
+            "ctaCardTitle": "Not sure where to start?",
+            "ctaCardDesc": "Tell us what you need and our consultants will help you clarify direction and assess feasibility.",
+            "ctaCardBtn": "Free Consultation"
+        },
+        "ai": {
+            "titlePre": "Make AI your business's ",
+            "titleHighlight": "competitive edge",
+            "subtitle": "From generative-AI customer service to smart customer acquisition, we turn the latest AI technology into products and services that are genuinely usable and deliver results.",
+            "btnChatai": "Meet ChatAI",
+            "btnAutogrowth": "Meet AutoGrowth"
+        },
+        "products": {
+            "title": "Our Products",
+            "subtitle": "Beyond custom development, we build our own SaaS products — from e-commerce and AI customer service to smart customer acquisition — to help businesses upgrade across the board.",
+            "gotoSite": "Visit Site"
+        },
+        "works": {
+            "title": "Case Studies",
+            "nextTitle": "The Next Success Story",
+            "nextDesc": "Could Be Your Project"
+        },
+        "insights": {
+            "title": "Insights",
+            "subtitle": "Stay on top of industry trends and hands-on perspectives in security, architecture, AI and more.",
+            "more": "More insights"
+        },
+        "why": {
+            "title": "Why Choose Us"
+        },
+        "process": {
+            "title": "How We Work",
+            "subtitle": "Four clear, transparent steps — from the first chat to long-term operations, we're with you the whole way."
+        },
+        "cta": {
+            "title": "Got an idea and looking for someone to build it with?",
+            "subtitle": "Whether it's a brand-new system, an upgrade of an old one, or on-site integration — let's talk, and we'll evaluate your project for free.",
+            "btnEval": "Free Project Assessment",
+            "btnCases": "View Case Studies"
+        },
+        "promoLearnMore": "Learn now",
+        "seo": {
+            "title": "JWisdom｜AIoT Experts · Software Development & System Integration",
+            "ogTitle": "JWisdom｜Your Technology Partner for Real-World Business",
+            "desc": "JWisdom is your technology partner for real-world business — software development, web & app design, government and education systems, AI integration and digital marketing — helping enterprises turn ideas into stable, working systems."
+        },
+        "defaults": {
+            "stats": [
+                { "value": "15+", "label": "Years of Experience" },
+                { "value": "200+", "label": "Projects Delivered" },
+                { "value": "50+", "label": "Government / Enterprise Clients" },
+                { "value": "98%", "label": "On-Time Delivery" }
+            ],
+            "products": [
+                { "name": "IoT Shop", "en": "JWisdom Shop", "tag": "E-commerce · Maker Parts", "desc": "A one-stop shop for maker and IoT electronic parts — Raspberry Pi, Arduino, ESP, Jetson, sensors and modules of all kinds, covering everything from prototyping to mass production.", "features": ["Thousands of boards and modules", "Online payments and membership system", "Technical selection advice"] },
+                { "name": "ChatAI Realistic CS", "en": "AI Realistic CS", "tag": "AI Customer Service · SaaS", "desc": "An AI-powered realistic customer-service platform that integrates LINE and other channels, with 24/7 automated replies, bookings and lead management — so service never sleeps.", "features": ["Multi-channel integration (LINE…)", "Bookings and lead management", "Customizable personas and scripts"] },
+                { "name": "AutoGrowth", "en": "AutoGrowth", "tag": "AI Marketing · Growth", "desc": "An AI-powered customer-acquisition and growth system: automatic short-video generation, review and reputation management, hot-lead analysis and automated follow-up sequences — turning traffic into repeat customers.", "features": ["AI short-video generation", "Hot-lead analysis and follow-up", "Review and reputation management"] }
+            ],
+            "why": [
+                { "title": "Strategy First", "desc": "We clarify your business goals and use cases before choosing the technology, so we never build a system no one uses." },
+                { "title": "Solid Engineering", "desc": "A full-stack in-house team across front-end, back-end, cloud and AI — no outsourcing, no bottlenecks." },
+                { "title": "Built to Ship", "desc": "We understand the realities of the field, so systems run stably, work well and stay maintainable on-site." },
+                { "title": "Long-Term Partner", "desc": "After delivery, we keep supporting you from operations to optimization — growing the system together." }
+            ],
+            "process": [
+                { "title": "Discovery", "desc": "We dive into your business goals, use cases and pain points, and assess feasibility for free." },
+                { "title": "Planning & Design", "desc": "We propose the system architecture, workflows and interface design, then start once direction and timeline are confirmed." },
+                { "title": "Development", "desc": "Agile, iterative development with a transparent process and progress you can check anytime, ensuring on-time delivery." },
+                { "title": "Operations & Optimization", "desc": "Launch isn't the end — we keep monitoring, maintaining and optimizing, helping you nurture the system." }
+            ]
+        }
     }
 }
