@@ -424,7 +424,7 @@ function ChatLauncher() {
     const { settings } = usePage().props as { settings?: Record<string, string> };
     const messenger = settings?.chat_messenger?.trim() || 'https://m.me/1074307245769066';
     const line = settings?.chat_line?.trim() || 'https://line.me/R/ti/p/@748glpev';
-    const telegram = settings?.chat_telegram?.trim() || 'https://t.me/jwisdomsystembot';
+    const telegram = settings?.chat_telegram?.trim() || 'https://t.me/jwisdomtw_bot';
     const [open, setOpen] = useState(false);
 
     const channels: ChatChannel[] = [
